@@ -1,0 +1,46 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { color } from '../_utils/branding'
+import { UTILS } from '../_utils/taxonomy'
+import { Text, TextDisplayType, TextTagType } from './index'
+
+
+<Meta title={`${UTILS}/Text`} />
+
+# **Text**
+
+<Canvas>
+  <Story name="Text">
+    <Text
+      display={TextDisplayType.BODY}
+      tag={TextTagType.SPAN}
+      textColor={color.primary}
+      aria-label="Aria label"
+      newlineToBr
+    >
+      This is an example
+    </Text>
+  </Story>
+</Canvas>
+
+## Specifications
+
+### ⚠️ THIS COMPONENT HAS BEEN DEPRECATED
+
+## Usage
+
+```jsx
+import { Text, TextDisplayType, TextTagType } from '@blablacar/ui-library/build/text'
+
+<Text
+  display={TextDisplayType.BODY}
+  tag={TextTagType.SPAN}
+  textColor={color.primary}
+  aria-label="Aria label"
+  newlineToBr
+>
+  This is an example
+</Text>
+```
+
+<ArgsTable of={Text} />

@@ -1,0 +1,29 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { BASIC } from '../_utils/taxonomy'
+import { BoostIcon } from '../icon/boostIcon'
+import { BrandedVoice } from './index'
+
+
+<Meta title={`${BASIC}/Branded Header (BrandedVoice)`} />
+
+# **Branded Header**
+
+<Canvas>
+  <Story name="Default">
+    <BrandedVoice label="Main text" subLabel="SubText" icon={<BoostIcon noBackground />} />
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { BrandedVoice } from '@blablacar/ui-library/build/brandedVoice'
+import { BoostIcon } from '@blablacar/ui-library/build/icon/boostIcon'
+
+<BrandedVoice label="Main text" subLabel="SubText" icon={<BoostIcon />}/>
+```
+
+<ArgsTable of={BrandedVoice} />

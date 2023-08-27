@@ -1,0 +1,55 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { BASIC } from '../../_utils/taxonomy'
+import { BaseSection } from '../../layout/section/baseSection'
+import { SpacingDivider, SpacingDividerSize } from './index'
+
+<Meta title={`${BASIC}/Divider/Spacing Divider`} />
+
+# Spacing Divider
+
+<Canvas>
+  <Story name="Spacing Divider">
+    <BaseSection>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis amet eius sunt! Voluptatum
+      tenetur sit, suscipit velit aspernatur ab earum nam. Corrupti iste nostrum dolorum magni
+      officiis quae aspernatur consectetur.
+      <SpacingDivider size={SpacingDividerSize.LARGE} />
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis amet eius sunt! Voluptatum
+      tenetur sit, suscipit velit aspernatur ab earum nam. Corrupti iste nostrum dolorum magni
+      officiis quae aspernatur consectetur.
+    </BaseSection>
+  </Story>
+</Canvas>
+
+## Specifications
+
+Use blank dividers when vertically stacked components don’t provide enough visual separation.
+
+- ⛔️ Stack multiple blank separators together.
+
+### Devs specs
+
+Normal state
+Spacing dividers can be displayed before and after any component.
+In a list of choices the last choice is not followed by a divider, unless there’s is another component after it.
+
+### Accessibility - Screen reader
+Skipped! This visual separator is not relevant for people using a screen reader.
+
+ⓘ The Divider is not read but it split groups of elements by [Sections] (options, data...). Those [Sections] alongside Dividers had to be clearely identified as separated zones of informations.
+
+## Usage
+
+```jsx
+import {
+  SpacingDivider,
+  SpacingDividerSize,
+} from '@blablacar/ui-library/build/divider/spacingDivider'
+
+Some section to divide...
+<SpacingDivider size={SpacingDividerSize.LARGE} />
+...Rest of the divided section.
+```
+
+<ArgsTable of={SpacingDivider} />

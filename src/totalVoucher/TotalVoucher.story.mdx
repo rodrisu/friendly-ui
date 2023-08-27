@@ -1,0 +1,86 @@
+import { ArgsTable,Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import { withKnobs } from '@storybook/addon-knobs'
+
+import { color } from '../_utils/branding'
+import { EDITORIAL } from '../_utils/taxonomy'
+import { Button } from '../button'
+import { Text, TextDisplayType } from '../text'
+import { TotalVoucher } from './index'
+
+<Meta title={`${EDITORIAL}/TotalVoucher`} decorators={[withKnobs({ escapeHTML: false })]}/>
+
+# **TotalVoucher**
+
+<Canvas>
+  <Story name="Default">
+    <TotalVoucher
+      title="Discover your welcome gift on BlaBlaCar"
+      subTitle={(
+        <Text display={TextDisplayType.SUBHEADERSTRONG}>For your first carpooling, receive <Text display={TextDisplayType.SUBHEADERSTRONG} textColor={color.blue}>€25</Text> gas or a <Text display={TextDisplayType.SUBHEADERSTRONG} textColor={color.blue}>€40</Text> wash voucher</Text>
+      )}
+      terms={{
+        href: "https://www.blablacar.fr",
+        label: "More information",
+      }}
+      stepsTitle={<span>How to get your voucher <img src="https://cdn.blablacar.com/kairos/assets/build/images/logo-8923a9de546560936b0b8495568f3823.png" alt=""/></span>}
+      steps={[
+        {
+          label: 'Step 1',
+          description: 'Publish your first trip',
+        },
+        {
+          label: 'Step 2',
+          description: 'Share your trip with at least one passenger',
+        },
+        {
+          label: 'Step 3',
+          description: 'Register your IBAN and your postal address',
+        },
+        {
+          label: 'Step 4',
+          description: 'Receive your Total voucher in your mailbox',
+        },
+      ]}
+      button={<Button href="https://www.blablacar.fr/offer-seats">Publish a ride</Button>}
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { TotalVoucher } from '@blablacar/ui-library/build/totalVoucher'
+
+<TotalVoucher
+  title=""
+  subTitle=""
+  terms={{
+    href: "",
+    label: ",
+  }}
+  stepsTitle=""
+  steps={[
+    {
+      label: '',
+      description: '',
+    },
+    {
+      label: '',
+      description: '',
+    },
+    {
+      label: '',
+      description: '',
+    },
+    {
+      label: '',
+      description: '',
+    },
+  ]}
+  button={<Button href=""></Button>}
+/>
+```
+
+<ArgsTable of={TotalVoucher} />

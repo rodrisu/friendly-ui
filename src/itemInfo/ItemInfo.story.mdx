@@ -1,0 +1,53 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { BASIC } from '../_utils/taxonomy'
+import { ClockIcon } from '../icon/clockIcon'
+import { ItemInfo } from './index'
+
+<Meta title={`${BASIC}/Items Info`} />
+
+# ItemInfo
+
+<Canvas>
+  <Story name="With secondary infos">
+    <ItemInfo
+      mainTitle="Main title"
+      mainInfo="Main info"
+      icon={<ClockIcon />}
+      tag={<li />}
+      aria-label="Custom aria label"
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Without secondary infos">
+    <ItemInfo
+      mainTitle="Main title"
+      icon={<ClockIcon />}
+      tag={<li />}
+      aria-label="Custom aria label"
+    />
+  </Story>
+</Canvas>
+
+
+## Specifications
+
+...
+
+## Usage
+
+```jsx
+import { ItemInfo } from '@blablacar/ui-library/build/itemInfo'
+
+<ItemInfo
+  mainTitle="Main title"
+  mainInfo="Main info"
+  icon={<ClockIcon />}
+  tag={<li />}
+  aria-label="Custom aria label"
+/>
+```
+
+<ArgsTable of={ItemInfo} />

@@ -1,0 +1,38 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import { text } from '@storybook/addon-knobs'
+
+import { color } from '../../_utils/branding'
+import { TYPOGRAPHY } from '../../_utils/taxonomy'
+import { TextDisplay1 } from '.'
+
+<Meta title={`${TYPOGRAPHY}/Display1`} />
+
+# **Display1**
+
+<Canvas>
+  <Story name="Medium">
+    <TextDisplay1 isInverted={false}>
+      {text('children', 'The quick\n brown fox jumps\n over the lazy\n dog')}
+    </TextDisplay1>
+  </Story>
+</Canvas>
+
+### **isInverted**
+
+<Canvas>
+  <Story name="isInverted">
+    <h1 style={{ backgroundColor: color.blue }}>
+      <TextDisplay1 isInverted>The quick brown fox jumps over the lazy dog</TextDisplay1>
+    </h1>
+  </Story>
+</Canvas>
+
+## Usage
+
+```jsx
+import { TextDisplay1 } from '@blablacar/ui-library/build/typography/display1'
+
+<TextDisplay1>The quick brown fox jumps over the lazy dog</TextDisplay1>
+```
+
+<ArgsTable of={TextDisplay1} />

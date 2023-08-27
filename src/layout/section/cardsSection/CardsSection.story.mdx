@@ -1,0 +1,144 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { SECTIONS } from '../../../_utils/taxonomy'
+import { Address, Itinerary } from '../../../itinerary'
+import { SectionContentSize } from '../../../layout/section/baseSection'
+import { QrCard } from '../../../qrCard'
+import { TripCard } from '../../../tripCard'
+import { CardsSection } from './index'
+
+<Meta title={`${SECTIONS}/CardsSection`} />
+
+export const tripCardConfig = {
+  'aria-label': 'Pick-up point: Paris, Drop-off point: Bordeaux, Departure time: 09:00, warning',
+  href: '/',
+  itinerary: (
+    <Itinerary>
+      <Address label="Paris" subLabel="Porte de Vincennes" time="09:00" />
+      <Address label="Bordeaux" subLabel="Gare Bordeaux Saint-Jean" time="12:00" />
+    </Itinerary>
+  ),
+  price: '8,00€',
+  flags: {
+    ladiesOnly: true,
+    maxTwo: true,
+    autoApproval: true,
+  },
+  title: '',
+}
+
+export const qrUrl =
+   'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png'
+
+## QR code 200x200 px
+export const bigQrUrl = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAAEu0lEQVR42u3dUVIbMRAEUN//0uQCSQV2ukfCfv1Jgb0rvaVGIxleXyKFvAyBgCVgCVgiYAlYApYIWAKWgCUCloAlYImAJWAJWP//gU4ab/HgLiZ3/a/v/+brTCZieYLAAgsssMACC6wurGl9N5iV5Us6OBoXThBYYIEFFlhggbUHa1ikT+7tm/Vm6jIOVs2ldUPjiQULLLDAAgsssMACC6ynrfMSrNTPlgCBBRZYYIEFFlhg5SvloNHUOqNkHSywwAILLLDAeltYC6cbSrN46jRE6RSDYzNggQUWWGCB9ethLWy1BsvV9ltceEmlCQILLLDAAgsssPKwFtLYpg0OWbBSbncpT04iWGCBBRZYYIHVKN7baErdyGHD85SAYCV++6oQLLDAAgsssD4BVgncQruvcQ7xwfencKS+DhZYYIEFFlhg3Q5rMhOlqvkgoJ/OYmpZU3q0wAILLLDAAgus7ib0JYf4SrvCyxvS7cbpg0sFCyywwAILLLDOwFpAFtxFbuyRl2Zx8lKpffTtBilYYIEFFlhgfTis4FbrQjGeGtnUaCzASj1LwwEHCyywwAILLLAq0/OgPIwM2YPifXNzemh64Rm4vUEKFlhggQUWWGCBBVZ+PZXqpB9cIS6/TnvFN5xTsMACCyywwAJrr/P+oCwN9oV/WsZuHg0IYm0sa4ajBBZYYIEFFlhgXd0gTXUjHxwfSJWuw65mCsTCowsWWGCBBRZYYJ0p3oMbyT99u1Sx/+DWguuJxiUFO9tggQUWWGCBBdaZ4v0goOF6YnPPe6EAD3a2r2iQggUWWGCBBdaHwPpmGdvetS1VuO21SNZl5BZuXBWCBRZYYIEF1gfCKvXcJk3XB9YbsIKdz8mdLlsHCyywwAILLLC6xXupFE0N6+uOf2d68PEL/hYACyywwAILLLD2ivehv9TQDGf0YDb3y3/x6QawwAILLLDA+gRYwY8JtId+YT3x4PKCB/RSBT5YYIEFFlhggXX+zPtydfzqZDKLQ/epSwoembyi8w4WWGCBBRZYHwhr2IFsD2Vw4lO39qB430QGFlhggQUWWGCBBdb7wioNWaqPXDq20FhFfu3+s7HlLjxYYIEFFlhggVUp3m8oRYdt7sZSZjjZC6chwAILLLDAAgusXwOrXUGXivfUkYHhSqh9uqEUsMACCyywwAIrX6K+Vv48y6R4T11GsAN56nDsLzuaDBZYYIEFFljvCisILthprJeid5+qm4zqcLUEFlhggQUWWGB1i/fSbJU2oVNDWVpPtAv8EiawwAILLLDAAitfvC+XmcEhS/VpD8KaPMalXxxggQUWWGCBBValERosJyPgFrZgH9xm4yzhm59uAAsssMACC6xPgLWwsxuEmLq7YKO1AWhYlV9RvIMFFlhggQUWWO3asLRN224PBhukjZXTRpcbLLDAAgsssMB6J1jfvKTJbAWXOBP3LRCKd7DAAgsssMB6V1ilirt9ecODfqk1R1AMWGCBBRZYYIEFFlhvCivYkj7YU24vu0oHVm+7TbDAAgsssMAC68ZP6Sy0uVMjvnB84JKNAbDAAgsssMACqwtLBCwBS8ASAUvAErBEwBKwBCwRsAQsAUsELAFLwBL5a/4AvENBmptgBQcAAAAASUVORK5CYII='
+
+## **CardsSection**
+
+<Canvas>
+  <Story name="Default">
+    <CardsSection>
+      <TripCard {...tripCardConfig} subHeader="Cheapest" tag="Discount 10%" />
+      <TripCard
+        {...tripCardConfig}
+        subHeader="Closest"
+        driver={{
+          avatarUrl: '//placehold.it/500x500',
+          firstName: 'Jane',
+        }}
+      />
+    </CardsSection>
+  </Story>
+  <Story name="with 4 trip cards">
+    <CardsSection>
+      <TripCard {...tripCardConfig} />
+      <TripCard
+        {...tripCardConfig}
+        driver={{
+          avatarUrl: '//placehold.it/500x500',
+          firstName: 'Jane',
+        }}
+      />
+      <TripCard {...tripCardConfig} />
+      <TripCard
+        {...tripCardConfig}
+        driver={{
+          avatarUrl: '//placehold.it/500x500',
+          firstName: 'Jane',
+        }}
+      />
+    </CardsSection>
+  </Story>
+  <Story name="with 3 QR Cards">
+    <CardsSection>
+      <QrCard
+        title="Jack Jones Dupont"
+        imageUrl={qrUrl}
+        itemMainTitle="1st class"
+        itemMainInfo="Your seat number will be assigned to you 1 hour before departure."
+      />
+      <QrCard
+        title="Michael Jones"
+        imageUrl={qrUrl}
+        itemMainTitle="1st class"
+        itemMainInfo="Seat n°22"
+      />
+      <QrCard
+        title="Johnny Perry Jones Tony Longname"
+        imageUrl={qrUrl}
+        itemMainTitle="1st class"
+        itemMainInfo="Seat n°21"
+      />
+    </CardsSection>
+  </Story>
+  <Story name="with 2 QR Cards">
+    <CardsSection>
+      <QrCard
+        title="Jack Jones Dupont"
+        imageUrl={bigQrUrl}
+        itemMainTitle="1st class"
+        itemMainInfo="Your seat number will be assigned to you 1 hour before departure."
+      />
+      <QrCard
+        title="Michael Jone"
+        imageUrl={bigQrUrl}
+        itemMainTitle="2nd class"
+        itemMainInfo="Seat n°24"
+      />
+    </CardsSection>
+  </Story>
+  <Story name="with 1 QR Card">
+    <CardsSection>
+      <QrCard
+        title="Jack Jones Dupont"
+        imageUrl={qrUrl}
+        itemMainTitle="1st class"
+        itemMainInfo="Your seat number will be assigned to you 1 hour before departure."
+      />
+    </CardsSection>
+  </Story>
+  <Story name="with contentSize LARGE">
+    <CardsSection contentSize={SectionContentSize.LARGE}>
+      <TripCard {...tripCardConfig} />
+      <TripCard {...tripCardConfig} />
+      <TripCard {...tripCardConfig} />
+      <TripCard {...tripCardConfig} />
+      <TripCard {...tripCardConfig} />
+    </CardsSection>
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { CardsSection } from '@blablacar/ui-library/build/layout/section/cardsSection'
+;<CardsSection>
+  <TripCard />
+  <TripCard />
+  <TripCard />
+</CardsSection>
+```
+
+<ArgsTable of={CardsSection} />

@@ -1,0 +1,147 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { SECTIONS } from '../../../_utils/taxonomy'
+import { ColumnedItemsListSection } from './index'
+
+export const itemsListInfo = {
+  mainTitle: 'Main title',
+  subTitle: 'Sub title',
+  list: [
+    {
+      href: 'https://www.blablacar.pt/',
+      label: 'Link item 1',
+    },
+    {
+      href: 'https://www.blablacar.pt/',
+      label: 'Veryyyyyyyyyyyyyy Loooooooong link item 2',
+    },
+    {
+      slugLink: <a href="#lug-item-1">slug-item-1</a>,
+      label: 'Slug item 1',
+    },
+    {
+      slugLink: <a href="#lug-item-2">slug-item-2</a>,
+      label: 'Looong slug item 2',
+    },
+    {
+      slugLink: <a href="#lug-item-3">slug-item-3</a>,
+      label: 'Looooooooong slug item 3',
+    },
+  ],
+}
+
+<Meta title={`${SECTIONS}/ColumnedItemsListSection`} />
+
+export const Template = (args) => <ColumnedItemsListSection {...args} />
+
+# ColumnedItemsListSection
+
+## 1 column
+
+<Canvas>
+  <Story name="with 1 column" args={{
+    itemsListInfo,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 2 columns
+
+<Canvas>
+  <Story name="with 2 columns" args={{
+    itemsListInfo,
+    columns: 2,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 3 columns
+
+<Canvas>
+  <Story name="with 3 columns" args={{
+    itemsListInfo,
+    columns: 3,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+## 1 collapsed column
+
+<Canvas>
+  <Story name="with 1 collapsed column" args={{
+    itemsListInfo,
+    useExpandToggle: true,
+    expandLabel: 'Expand',
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 2 collapsed columns
+
+<Canvas>
+  <Story name="with 2 collapsed columns" args={{
+    itemsListInfo,
+    columns: 2,
+    useExpandToggle: true,
+    expandLabel: 'Expand',
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## 3 collapsed columns
+
+<Canvas>
+  <Story name="with 3 collapsed columns" args={{
+    itemsListInfo,
+    columns: 3,
+    useExpandToggle: true,
+    expandLabel: 'Expand',
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Display list only
+
+<Canvas>
+  <Story name="with only the list" args={{
+    itemsListInfo,
+    useExpandToggle: true,
+    expandLabel: 'Expand',
+    displayListOnly: true,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+
+## Specifications
+
+`ColumnedItemsListSection` 
+
+> _SEO_
+>
+> Content should not be completely hidden from the DOM. It uses CSS to handle visibility
+
+### Behavior
+
+Note:
+- "Slug items" are meant to receive SlugLink components
+- "Link items" are actually converted to Button components
+and use an onClick listener instead of an anchor to make sure these links are not SEO friendly
+
+## Usage
+
+```jsx
+import { ColumnedItemsListSection } from '@blablacar/ui-library/build/layout/section/ColumnedItemsListSection'
+<ColumnedItemsListSection />
+```
+
+<ArgsTable of={ColumnedItemsListSection} />

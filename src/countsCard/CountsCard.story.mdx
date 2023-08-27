@@ -1,0 +1,56 @@
+import { ArgsTable,Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { EDITORIAL } from '../_utils/taxonomy'
+import { CountsCard } from './index'
+
+<Meta title={`${EDITORIAL}/CountsCard`} />
+
+# **CountsCard**
+
+<Canvas>
+  <Story name="Default">
+    <CountsCard
+      cards={[
+        {
+          title: 'Join 900,000',
+          description: 'drivers already using BlaBlaCar',
+        },
+        {
+          title: 'More than 90 million',
+          description: 'BlaBlaCar members worldwide',
+        },
+        {
+          title: 'Over 40 million',
+          description: 'rides shared per year',
+        },
+      ]}
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { CountsCard } from '@blablacar/ui-library/build/countsCard'
+
+<CountsCard
+  cards={[
+    {
+      title: '',
+      description: '',
+    },
+    {
+      title: '',
+      description: '',
+    },
+    {
+      title: '',
+      description: '',
+    },
+  ]}
+/>
+```
+
+<ArgsTable of={CountsCard} />

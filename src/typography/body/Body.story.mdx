@@ -1,0 +1,64 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import { text } from '@storybook/addon-knobs'
+
+import { color } from '../../_utils/branding'
+import { TYPOGRAPHY } from '../../_utils/taxonomy'
+import { TextBodyStrong } from '../bodyStrong'
+import { TextBody } from '.'
+
+
+<Meta title={`${TYPOGRAPHY}/Body`} />
+
+# **Body**
+
+<Canvas>
+  <Story name="Regular">
+    <TextBody isInverted={false}>
+      {text('children','The quick\n brown fox jumps\n over the lazy\n dog')}
+    </TextBody>
+  </Story>
+</Canvas>
+
+### Usage
+
+```jsx
+import { TextBody } from '@blablacar/ui-library/build/typography/body'
+
+<TextBody>The quick brown fox jumps over the lazy dog</TextBody>
+```
+
+<ArgsTable of={TextBody} />
+
+
+## **Strong**
+
+<Canvas>
+  <Story name="Medium">
+    <TextBodyStrong as="p">
+      The quick brown fox jumps over the lazy dog
+    </TextBodyStrong>
+  </Story>
+</Canvas>
+
+
+## **isInverted**
+
+<Canvas>
+  <Story name="isInverted">
+    <p style={{ backgroundColor: color.blue }}>
+      <TextBody isInverted>The quick brown fox jumps over the lazy dog</TextBody>
+    </p>
+  </Story>
+</Canvas>
+
+
+
+### Usage
+
+```jsx
+import { TextBodyStrong } from '@blablacar/ui-library/build/typography/bodyStrong'
+
+<TextBodyStrong>The quick brown fox jumps over the lazy dog</TextBodyStrong>
+```
+
+<ArgsTable of={TextBodyStrong} />

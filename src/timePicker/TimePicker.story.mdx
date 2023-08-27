@@ -1,0 +1,32 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { BASIC } from '../_utils/taxonomy'
+import { TimePicker } from './index'
+
+<Meta title={`${BASIC}/Time Picker`} />
+
+# **Time Picker**
+
+<Canvas>
+  <Story name="Default">
+    <TimePicker
+      name="departure-time"
+      minuteStep={30}
+      disabled={false}
+      focus
+      small={false}
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { TimePicker } from '@blablacar/ui-library/build/timePicker'
+
+<TimePicker />
+```
+
+<ArgsTable of={TimePicker} />

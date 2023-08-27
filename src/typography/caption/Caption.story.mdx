@@ -1,0 +1,41 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import { text } from '@storybook/addon-knobs'
+
+import { color } from '../../_utils/branding'
+import { TYPOGRAPHY } from '../../_utils/taxonomy'
+import { TextCaption } from '.'
+
+<Meta title={`${TYPOGRAPHY}/Caption`} />
+
+# **Caption**
+
+<Canvas>
+  <Story name="Regular">
+    <h1>
+      <TextCaption isInverted={false}>
+        {text('The quick\n brown fox jumps\n over the lazy\n dog')}
+      </TextCaption>
+    </h1>
+  </Story>
+</Canvas>
+
+### isInverted
+
+<Canvas>
+  <Story name="isInverted">
+    <h1 style={{ backgroundColor: color.blue }}>
+      <TextCaption isInverted>The quick brown fox jumps over the lazy dog</TextCaption>
+    </h1>
+  </Story>
+</Canvas>
+
+
+## Usage
+
+```jsx
+import { TextCaption } from '@blablacar/ui-library/build/typography/caption'
+
+<TextCaption>The quick brown fox jumps over the lazy dog</TextCaption>
+```
+
+<ArgsTable of={TextCaption} />

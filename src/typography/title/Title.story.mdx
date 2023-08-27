@@ -1,0 +1,62 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+import { text } from '@storybook/addon-knobs'
+
+import { color } from '../../_utils/branding'
+import { TYPOGRAPHY } from '../../_utils/taxonomy'
+import { TextTitleStrong } from '../titleStrong'
+import { TextTitle } from '.'
+
+<Meta title={`${TYPOGRAPHY}/Title`} />
+
+# **Title**
+
+<Canvas>
+  <Story name="Regular">    
+    <TextTitle isInverted={false}>
+      {text('children','The quick\n brown fox jumps\n over the lazy\n dog')}
+    </TextTitle>  
+  </Story>
+</Canvas>
+
+### Usage
+
+```jsx
+import { TextTitle } from '@blablacar/ui-library/build/typography/title'
+
+<TextTitle>The quick brown fox jumps over the lazy dog</TextTitle>
+```
+
+<ArgsTable of={TextTitle} />
+
+## Strong
+
+<Canvas>
+  <Story name="Medium">
+    <TextTitleStrong isInverted={false} as="h1">
+      The quick brown fox jumps over the lazy dog
+    </TextTitleStrong>
+  </Story>
+</Canvas>
+
+### Usage
+
+```jsx
+import { TextTitleStrong } from '@blablacar/ui-library/build/typography/titleStrong'
+
+<TextTitleStrong>The quick brown fox jumps over the lazy dog</TextTitleStrong>
+```
+
+<ArgsTable of={TextTitleStrong} />
+
+
+### **isInverted**
+
+<Canvas>
+  <Story name="isInverted">    
+    <h1 style={{ backgroundColor: color.blue }}>
+      <TextTitleStrong isInverted={false} as="h1">
+        The quick brown fox jumps over the lazy dog
+      </TextTitleStrong>
+    </h1>  
+  </Story>
+</Canvas>

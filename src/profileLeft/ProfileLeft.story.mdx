@@ -1,0 +1,67 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { MAIN } from '../_utils/taxonomy'
+import { ComfortIcon } from '../icon/comfortIcon'
+import { LadyIcon } from '../icon/ladyIcon'
+import { LightningIcon } from '../icon/lightningIcon'
+import { WifiIcon } from '../icon/wifi'
+import { ProfileLeft } from './index'
+
+<Meta title={`${MAIN}/Profile/Left`} />
+
+# **Profile Left: Carpool driver **
+
+<Canvas>
+  <Story name="Carpool">
+    <ProfileLeft
+          displayName="Bob"
+          pictureUrl="https://pbs.twimg.com/profile_images/749446875162505218/6r6-9wDn.jpg"
+          averageRating="4.2"
+          options={[
+              {
+                  icon: <LightningIcon />,
+                  label: 'Auto-accept',
+              },
+              {
+                  icon: <LadyIcon />,
+                  label: 'Ladies only',
+              },
+              {
+                   icon: <ComfortIcon />,
+                   label: '2 passengers max',
+              },
+          ]}
+        />
+  </Story>
+</Canvas>
+
+# *Profile Left: Bus transporter **
+
+<Story name="Bus">
+  <ProfileLeft
+        displayName="Bus Company"
+        pictureUrl="https://cdn.blablacar.com/comuto3/images/vehicle/bus-v1.png"
+        additionalInfo="2 changes"
+        options={[
+            {
+                icon: <WifiIcon />,
+                label: 'WIFI available',
+            },
+        ]}
+      />
+</Story>
+
+<Story name="Bus without secondary info">
+  <ProfileLeft
+        displayName="Bus Company"
+        pictureUrl="https://cdn.blablacar.com/comuto3/images/vehicle/bus-v1.png"
+        options={[
+            {
+                icon: <WifiIcon />,
+                label: 'WIFI available',
+            },
+        ]}
+      />
+</Story>
+
+<ArgsTable of={ProfileLeft} />

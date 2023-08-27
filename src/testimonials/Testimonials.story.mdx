@@ -1,0 +1,70 @@
+import { ArgsTable,Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { EDITORIAL } from '../_utils/taxonomy'
+import { Testimonials } from './index'
+
+<Meta title={`${EDITORIAL}/Testimonials`} />
+
+# **Testimonials**
+
+<Canvas>
+  <Story name="Default">
+    <Testimonials
+      illustration={
+        <img
+          src="https://cdn.blablacar.com/kairos/assets/build/images/indicate-your-route-fef6b1a4c9dac38c77c092858d73add3.svg"
+          alt=""
+        />
+      }
+      testimonials={[
+        {
+          quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet aliquet tortor, non tincidunt lectus tincidunt sit amet. Quisque ac nisl massa.",
+          author: "Brenda",
+        },
+        {
+          quote: 'Nullam sed urna id dui ultrices condimentum. Etiam ac vestibulum odio. Etiam ut elementum augue.',
+          author: 'George',
+        },
+        {
+          quote: 'Aliquam erat volutpat. Donec euismod et sem at pretium. Mauris mattis luctus condimentum. Aenean ac iaculis velit.',
+          author: 'Yorg',
+        },
+      ]}
+      a11y={{
+        mainTitle: 'Testimonials',
+        prev: 'Previous',
+        next: 'Next',
+      }}
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+
+- ✅ The carousel loops
+- ✅ Navigating through the testimonials is done with buttons on large medias, or with swipe on touch devices
+- ⛔️ No automatic rotation
+- 🖊 The card takes the height required to fully display the message with the max length
+- 🖊 The author name is fixed at the bottom to avoid waves
+
+## Usage
+
+```jsx
+import { Testimonials } from '@blablacar/ui-library/build/testimonials'
+
+<Testimonials
+  illustration={<img src="" alt=""/>}
+  testimonials={[
+    { quote: '', author: '' },
+    { quote: '', author: '' },
+    { quote: '', author: '' },
+  ]}
+  a11y={{
+    mainTitle: '',
+    prev: '',
+    next: '',
+  }}
+/>
+```
+
+<ArgsTable of={Testimonials} />

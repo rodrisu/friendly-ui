@@ -1,0 +1,30 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { APP } from '../_utils/taxonomy'
+import { SearchRecap } from './index'
+
+<Meta title={`${APP}/SearchRecap`} />
+
+# **SearchRecap**
+
+<Canvas>
+  <Story name="SearchRecap">
+    <SearchRecap
+      from="Middlesbrough"
+      to="Stoke-on-Trent, city center"
+      info="Today 2:30pm, 2 passengers"
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { SearchRecap } from '@blablacar/ui-library/build/searchRecap'
+
+<SearchRecap />
+```
+
+<ArgsTable of={SearchRecap} />

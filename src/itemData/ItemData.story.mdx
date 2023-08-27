@@ -1,0 +1,104 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { color } from '../_utils/branding'
+import { BASIC } from '../_utils/taxonomy'
+import { Button, ButtonStatus } from '../button'
+import { BoostIcon } from '../icon/boostIcon'
+import { InfoIcon } from '../icon/infoIcon'
+import { ItemData } from './index'
+
+<Meta title={`${BASIC}/Items with Data`} />
+
+# Items with Data
+
+<Canvas>
+  <Story name="With secondary infos">
+    <ItemData
+      mainTitle="Main title"
+      aria-label="Aria label"
+      mainInfo="Main info"
+      data="Data"
+      dataStrikeThrough={{
+        label: 'Data aria label',
+      }}
+      dataInfo="Data info"
+      disabled={false}
+      mainTitleButtonAddon={(
+        <Button status={ButtonStatus.UNSTYLED} isBubble onClick={() => 'Info clicked'}>
+          <InfoIcon iconColor={color.blue} title="More info" />
+        </Button>
+      )}
+      tag={<li />}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Without secondary infos">
+    <ItemData
+      mainTitle="Main title"
+      aria-label="Aria label"
+      data="Data"
+      dataStrikeThrough={{
+        label: 'Data aria label',
+      }}
+      dataInfo="Data info"
+      disabled={false}
+      mainTitleButtonAddon={(
+        <Button status={ButtonStatus.UNSTYLED} isBubble onClick={() => 'Info clicked'}>
+          <InfoIcon iconColor={color.blue} title="More info" />
+        </Button>
+      )}
+      tag={<li />}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Boost - Smart Price">
+    <ItemData
+      mainTitle="1 seat"
+      data="9 €"
+      dataColor={color.blue}
+      dataIcon={<BoostIcon size={20} />}
+    />
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="With discount tag label">
+    <ItemData
+      tagLabel="Discount 10%"
+      mainInfo="This summer, get 10% off the ticket price."
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+...
+
+## Usage
+
+```jsx
+import { ItemData } from '@blablacar/ui-library/build/itemData'
+
+<ItemData
+  mainTitle="Main title"
+  aria-label="Aria label"
+  mainInfo="Main info"
+  data="Data"
+  dataStrikeThrough={{
+    label: 'Data aria label',
+  }}
+  dataInfo="Data info"
+  disabled={false}
+  mainTitleButtonAddon={(
+    <Button status={ButtonStatus.UNSTYLED} isBubble onClick={() => 'Info clicked'}>
+      <InfoIcon iconColor={color.blue} title="More info" />
+    </Button>
+  )}
+  tag={<li />}
+/>
+```
+
+<ArgsTable of={ItemData} />

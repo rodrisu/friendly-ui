@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./build",
+    "noImplicitAny": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": ["es2017", "dom"],
+    "jsx": "react",
+    "allowJs": false,
+    "declaration": true,
+    "noEmitOnError": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "./src/**/*.tsx",
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "build",
+    "node_modules",
+    "src/**/*.story.*",
+    "src/**/*.unit.*"
+  ]
+}

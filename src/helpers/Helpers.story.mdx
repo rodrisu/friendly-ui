@@ -1,0 +1,43 @@
+import { action } from '@storybook/addon-actions'
+import { ArgsTable,Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { EDITORIAL } from '../_utils/taxonomy'
+import { Helpers } from './index'
+
+<Meta title={`${EDITORIAL}/Helpers`} />
+
+# **Helpers**
+
+<Canvas>
+  <Story name="Default">
+    <Helpers
+      illustration={<img src="https://cdn.blablacar.com/kairos/assets/build/images/astronaut-79c2cfcb1a66f7c9afc1bbc50f0037fd.svg" alt="" />}
+      content={{
+        title: 'Need some help?',
+        paragraph: 'Our community of experienced members can answer your questions, live!',
+        button: 'Chat with a BlaBlaCar driver',
+      }}
+      onClick={action('button click')}
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { Helpers } from '@blablacar/ui-library/build/helpers'
+
+<Helpers
+  illustration={<img src="" alt="" />}
+  content={{
+    title: '',
+    paragraph: '',
+    button: '',
+  }}
+  onClick={() => {}}
+/>
+```
+
+<ArgsTable of={Helpers} />

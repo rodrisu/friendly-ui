@@ -1,0 +1,83 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { EDITORIAL } from '../../../_utils/taxonomy'
+import { AvatarIcon } from '../../../icon/avatarIcon'
+import { ItemInfo } from '../../../itemInfo'
+import { ItemsList } from '../../../itemsList'
+import { VideoSection } from './index'
+
+<Meta title={`${EDITORIAL}/VideoSection`} />
+
+# **VideoSection**
+
+<Canvas>
+  <Story name="Default">
+    <VideoSection
+      title="Publish your ride in just minutes"
+      sources={[
+        { src: 'https://cdn.blablacar.com/kairos/assets/videos/newbie-lp/fr_FR.webm', type: 'video/webm' },
+        { src: 'https://cdn.blablacar.com/kairos/assets/videos/newbie-lp/fr_FR.mp4', type: 'video/mp4' },
+      ]}
+    >
+      <ItemsList>
+        <ItemInfo
+          mainTitle="Create a BlaBlaCar account"
+          mainInfo="Add your profile picture, a few words about you and your phone number to increase trust between members."
+          icon={<AvatarIcon />}
+          tag={<li />}
+        />
+        <ItemInfo
+          mainTitle="Create a BlaBlaCar account"
+          mainInfo="Add your profile picture, a few words about you and your phone number to increase trust between members."
+          icon={<AvatarIcon />}
+          tag={<li />}
+        />
+        <ItemInfo
+          mainTitle="Create a BlaBlaCar account"
+          mainInfo="Add your profile picture, a few words about you and your phone number to increase trust between members."
+          icon={<AvatarIcon />}
+          tag={<li />}
+        />
+      </ItemsList>
+    </VideoSection>
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { VideoSection } from '@blablacar/ui-library/build/layout/section/tutorialSection'
+
+<VideoSection
+  title="Publish your ride in just minutes"
+  sources={[
+    { src: 'https://cdn.blablacar.com/kairos/assets/videos/newbie-lp/fr_FR.webm', type: 'video/webm' },
+    { src: 'https://cdn.blablacar.com/kairos/assets/videos/newbie-lp/fr_FR.mp4', type: 'video/mp4' },
+  ]}
+>
+  <ItemsList>
+    <ItemInfo
+      mainTitle="Create a BlaBlaCar account"
+      mainInfo="Add your profile picture, a few words about you and your phone number to increase trust between members."
+      icon={<AvatarIcon />}
+      tag={<li />}
+    />
+    <ItemInfo
+      mainTitle="Create a BlaBlaCar account"
+      mainInfo="Add your profile picture, a few words about you and your phone number to increase trust between members."
+      icon={<AvatarIcon />}
+      tag={<li />}
+    />
+    <ItemInfo
+      mainTitle="Create a BlaBlaCar account"
+      mainInfo="Add your profile picture, a few words about you and your phone number to increase trust between members."
+      icon={<AvatarIcon />}
+      tag={<li />}
+    />
+  </ItemsList>
+</VideoSection>
+```
+
+<ArgsTable of={VideoSection} />

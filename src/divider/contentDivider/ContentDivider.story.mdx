@@ -1,0 +1,55 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { BASIC } from '../../_utils/taxonomy'
+import { ItemData } from '../../itemData'
+import { BaseSection } from '../../layout/section/baseSection'
+import { ContentDivider } from '.'
+
+<Meta title={`${BASIC}/Divider/Content Divider`} />
+
+# Content Divider
+
+<Canvas>
+  <Story name="Content Divider">
+    <BaseSection noHorizontalSpacing>
+      <ItemData mainTitle="Some content to divide..." />
+      <ContentDivider />
+      <ItemData mainTitle="...Rest of the divided content." />
+    </BaseSection>
+  </Story>
+</Canvas>
+
+## Specifications
+
+Use it in order to create hierarchy within the same section, page or any white content area.
+Use it in any screen. Helps the member find info on the screen by grouping elements into categories.
+
+- ✅ Use when white space is not enough
+- ✅ In list, when each item is long and difficult to scan
+
+- ⛔️ Do not use for surrounding an item
+- ⛔️ Do not use to separate unrelated sections
+
+### Dev specs
+
+Normal state
+Content dividers can be displayed before and after any component.
+They are centered in a layout.
+They can be paired with subheaders to better identify categories.
+
+In a list of choices the last choice is not followed by a Content divider, unless there’s is another component after it.
+
+### Accessibility - Screen reader
+Skipped! This visual separator is not relevant for people using a screen reader.
+
+ⓘ The Divider is not read but it split groups of elements by [Sections] (options, data...). Those [Sections] alongside Dividers had to be clearely identified as separated zones of informations.
+
+## Usage
+
+```jsx
+import { ContentDivider } from '@blablacar/ui-library/build/divider/contentDivider'
+
+Some content to divide...
+<ContentDivider />
+...Rest of the divided content.
+```

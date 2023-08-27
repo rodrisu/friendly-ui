@@ -1,0 +1,15 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { PAGES } from '../../../_utils/taxonomy'
+import { Rides, RidesHistory } from './Rides'
+
+<Meta title={`${PAGES}/Your rides`} />
+
+<Canvas>
+  <Story name="Active rides">
+    <Rides />
+  </Story>
+  <Story name="Inactive rides">
+    <RidesHistory />
+  </Story>
+</Canvas>

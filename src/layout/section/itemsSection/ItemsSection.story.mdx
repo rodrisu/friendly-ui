@@ -1,0 +1,34 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { SECTIONS } from '../../../_utils/taxonomy'
+import { ItemInfo } from '../../../itemInfo'
+import { ItemsSection } from './index'
+
+<Meta title={`${SECTIONS}/ItemsSection`} />
+
+# **ItemsSection**
+
+<Canvas>
+  <Story name="Default">
+    <ItemsSection>
+      <ItemInfo mainTitle="Bus number" mainInfo="1234" />
+      <ItemInfo mainTitle="Gate number" mainInfo="12" />
+    </ItemsSection>
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { ItemsSection } from '@blablacar/ui-library/build/layout/section/itemsSection'
+import { ItemInfo } from '@blablacar/ui-library/build//itemInfo'
+
+<ItemsSection>
+  <ItemInfo mainTitle="Bus number" mainInfo="1234" />
+  <ItemInfo mainTitle="Gate number" mainInfo="12" />
+</ItemsSection>
+```
+
+<ArgsTable of={ItemsSection} />

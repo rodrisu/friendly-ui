@@ -1,0 +1,32 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { APP } from '../_utils/taxonomy'
+import { Bullet, BulletTypes } from './index'
+
+<Meta title={`${APP}/Bullet`} />
+
+# **Bullet**
+
+<Canvas>
+  <Story name="Bullet">
+    <Bullet
+      className="custom-class"
+      type={BulletTypes.DEFAULT}
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { Bullet, BulletTypes } from '@blablacar/ui-library/build/bullet'
+
+<Bullet
+  className="additionnal-class"
+  type={BulletTypes.DEFAULT}
+/>
+```
+
+<ArgsTable of={Bullet} />

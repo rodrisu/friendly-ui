@@ -1,0 +1,34 @@
+import { Fragment } from 'react'
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { SECTIONS } from '../../../_utils/taxonomy'
+import { BaseSection, SectionContentSize } from './index'
+
+<Meta title={`${SECTIONS}/BaseSection`} />
+
+# **BaseSection**
+
+<Canvas>
+  <Story name="Default">
+    <Fragment>
+      <BaseSection>
+        <div style={{ height: '100%', backgroundColor: 'lime' }}>Section 1 with small content</div>
+      </BaseSection>
+      <BaseSection contentSize={SectionContentSize.LARGE}>
+        <div style={{ height: '100%', backgroundColor: 'lime' }}>Section 2 with large content</div>
+      </BaseSection>
+    </Fragment>
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { BaseSection } from '@blablacar/ui-library/build/layout/section/baseSection'
+
+<BaseSection />
+```
+
+<ArgsTable of={BaseSection} />

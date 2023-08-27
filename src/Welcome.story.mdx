@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+import { WELCOME } from './_utils/taxonomy'
+
+
+<Meta title={`${WELCOME}`} layout="centered" />
+
+# Welcome to Pixar's Component Library on React
+
+Pixar components implementation on Storybook mirrors design specification on Figma. 
+Therefore you  will find main sections:
+
+| categories | description   |
+| ------------- |-------------|
+| **Styles** | Design Tokens and Foundations including Icons and Illustration Libraries |
+| **Basic Components** | Common components (atoms) |
+| **BBC Main Components** | Business Components on a more modular way (organisms) |
+| **SPA** | All SPA components that haven't been specified. |
+| **Pages** | Kind a dev **playgroung** where we can preview the page before implementing on the APP. |
+
+SPA components may be
+ - **Internal** components, hooks or utils.
+ - **Editorial** components (mainly components that use grid and are made for landing pages)
+ - **Application components** the ones that haven't been specified by Pixar yet
+
+
+
+
+## Creating a new component
+
+When creating a new component, **make sure to follow Figma taxonomy**. 
+
+This the base of our shared vocabulary.
+
+At Kirk, each component is stored in the `src` folder and it has its own folder with all of its information. 
+
+Basically, a component folder will always have:
+
+- A component `.tsx` file
+- A stylesheet associated to your component `.style.tsx`
+- A unit test file `.unit.tsx`
+- A story file for documentation and functional testing `.story.mdx`
+
+You can generate a component scaffolding by running
+
+```bash
+npm run generate
+```
+
+it will ask for component name and check if this name has already been taken. 
+
+Make sure to follow Pixar naming conventions.
+
+
+

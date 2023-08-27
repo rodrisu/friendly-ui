@@ -1,0 +1,42 @@
+import { ArgsTable,Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { color } from '../_utils/branding'
+import { EDITORIAL } from '../_utils/taxonomy'
+import { Text, TextDisplayType } from '../text'
+import { BlaBlaCarDaily } from './index'
+
+<Meta title={`${EDITORIAL}/BlaBlaCarDaily`} />
+
+# **BlaBlaCarDaily**
+
+<Canvas>
+  <Story name="Default">
+    <BlaBlaCarDaily
+      content={{
+        title: (<Text display={TextDisplayType.DISPLAY1} textColor={color.blaBlaCarDailyBrandText}>And a <Text display={TextDisplayType.DISPLAY1} textColor={color.white}>€15</Text> gas voucher with BlaBlaCar Daily</Text>),
+        paragraph: 'Receive a €15 gas voucher for your first trip with a confirmed passenger on BlaBlaCar Daily, the home-office commuting app. Terms of Service available on blablacardaily.com',
+        link: 'Discover BlaBlaCar Daily'
+      }}
+      href="https://blablacardaily.com"
+    />
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { BlaBlaCarDaily } from '@blablacar/ui-library/build/blaBlaCarDaily'
+
+<BlaBlaCarDaily
+  content={{
+    title: '',
+    paragraph: '',
+    link: '',
+  }}
+  href=""
+/>
+```
+
+<ArgsTable of={BlaBlaCarDaily} />

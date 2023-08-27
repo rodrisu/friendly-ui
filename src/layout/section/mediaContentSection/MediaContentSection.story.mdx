@@ -1,0 +1,101 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { SECTIONS } from '../../../_utils/taxonomy'
+import { MediaContentSection } from './index'
+
+<Meta title={`${SECTIONS}/MediaContentSection`} parameters={{ knobs: { disabled: true }}}/>
+
+export const Template = (args) => <MediaContentSection {...args} />
+
+# **MediaContentSection**
+
+<Canvas>
+  <Story name="Homepage - driver block" args={{
+    title:"Where do you want to drive to?",
+    content:"Let's make this your least expensive journey ever.",
+    buttonLabel:"Offer a ride",
+    buttonHref:"https://www.blablacar.fr/offer-seats",
+    media: <img src="https://cdn.blablacar.com/kairos/assets/build/images/indicate-your-route-fef6b1a4c9dac38c77c092858d73add3.svg" alt=""/>,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Homepage - driver block FR" args={{
+    title:"Et si conduire vous faisait faire des économies?",
+    content:"Devenez conducteur BlaBlaCar et faites des économies sur chacun de vos trajets en partageant les frais avec vos passagers. Et ce n’est pas tout ! Recevez 40€ d’essence* en plus pour vos premiers covoiturages.",
+    buttonLabel:"Publier un trajet",
+    buttonHref:"https://www.blablacar.fr/offer-seats",
+    media: <img src="http://localhost:9000/images/total-43c9a591c6f2fb73aa115c6861b2c0fd.svg" alt="" />,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Homepage - bus block FR" args={{
+    title:"Vers plus de 300 villes, nos bus vous emmènent à petits prix.",
+    content:"Chaque semaine, chaque mois. Pour une réunion importante ou juste parce que vous avez envie de voir un nouvel endroit. Avec une grande famille. Ou un gros bagage. Vers la mer comme vers les pistes de ski. Peu importe votre voyage, il sera toujours simple et abordable avec BlaBlaBus.",
+    buttonLabel:"Découvrez notre offre de bus",
+    buttonHref:"https://www.blablacar.fr/bus",
+    media: <img src="https://cdn.blablacar.com/kairos/assets/build/images/blablabus2_large-611071cd4e9502579e94f6bc24391eda.jpg" alt="" />,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Homepage - bus block RU" args={{
+    title:"Дешевые автобусные билеты от официальных перевозчиков, более 50 тысяч маршрутов",
+    content:"Для встречи с близкими, по работе или просто потому, что вы хотите посетить новый город. С большой семей, с большим багажом. В Санкт-Петербург, Екатеринбург или любой другой город. Неважно, какое направление вы выберете, вы всегда можете удобно и безопасно приобрести автобусные билеты на BlaBlaCar",
+    buttonLabel:"Узнать больше об автобусных поездках с BlaBlaCar",
+    buttonHref:"https://www.blablacar.fr/bus",
+    media: <img src="https://cdn.blablacar.com/kairos/assets/build/images/home_bus_transition_section-bf80eb1eee9e39e0235055b8b1f86da8.jpg" alt="" />,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Bus page - FR" args={{
+    title:"Les bus BlaBlaCar vous emmènent à petits prix.",
+    content:"Des trajets en bus sont disponibles sur BlaBlaCar ! Petits prix, durée du voyage, confort ou choix d'horaires : quel que soit votre critère, votre trajet idéal est sur BlaBlaCar.",
+    buttonLabel:"Réserver votre prochain voyage",
+    buttonHref:"https://www.blablacar.fr/search-car-sharing",
+    media: <img src="https://cdn.blablacar.com/kairos/assets/build/images/blablacar_bus_large-3b06a729623959dd65e5722ca57ebcd5.png" alt="" />,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Bus page - BR" args={{
+    title:"Carona ou ônibus? Sua viagem, suas regras",
+    content:"A BlaBlaCar agora oferece passagens de ônibus na plataforma. Economia, tempo, conforto ou opções de horários: seja qual for o seu critério, sua viagem ideal está na BlaBlaCar.",
+    buttonLabel:"Procurar viagem",
+    buttonHref:"https://www.blablacar.fr/search-car-sharing",
+    media: <img src="https://cdn.blablacar.com/kairos/assets/build/images/blablabus4_large-68a2c9f954b581eda0f627e53477b672.jpg" alt="" />,
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Specifications
+
+## Usage
+
+```jsx
+import { MediaContentSection } from '@blablacar/ui-library/build/layout/section/mediaContentSection'
+
+<MediaContentSection
+  title=""
+  content=""
+  buttonLabel=""
+  buttonHref=""
+  buttonClick={() => {}}
+  media={<img src="" alt="" />}
+/>
+```
+
+<ArgsTable of={MediaContentSection} />

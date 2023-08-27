@@ -1,0 +1,20 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks'
+
+import { PAGES } from '../../../../_utils/taxonomy'
+import { EditOptions } from './EditOptions'
+import { EditPrices } from './EditPrices'
+
+
+<Meta title={`${PAGES}/Your rides/Offer/Edit`} />
+
+<Canvas>
+  <Story name="Options">
+    <EditOptions />
+  </Story>
+  <Story name="Prices With stopovers">
+    <EditPrices withStopovers />
+  </Story>
+  <Story name="Prices Without stopovers">
+    <EditPrices />
+  </Story>
+</Canvas>
