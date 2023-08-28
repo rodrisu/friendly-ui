@@ -1,0 +1,13 @@
+declare const WELCOME = "Welcome";
+declare const STYLES = "Styles";
+declare const TYPOGRAPHY = "Styles/Typography";
+declare const BASIC = "Basic Components";
+declare const MAIN = "BBC Main Components";
+declare const SPA = "SPA";
+declare const UTILS = "SPA/Utils";
+declare const EDITORIAL = "SPA/Editorial (Marketing and SEO)";
+declare const APP = "SPA/App";
+declare const SECTIONS = "SPA/Sections";
+declare const PAGES = "Pages";
+declare const LAYOUT = "SPA/Layout";
+export { WELCOME, STYLES, TYPOGRAPHY, BASIC, MAIN, SPA, SECTIONS, PAGES, LAYOUT, UTILS, EDITORIAL, APP, };

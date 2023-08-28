@@ -33,7 +33,7 @@ export type ColumnedItemsListSectionProps = {
   useExpandToggle?: boolean
   headingLevel?: HeadingLevel
   displayListOnly?: boolean
-  redirectToSlug?: string
+  // redirectToSlug?: string
   sectionContentSize?: SectionContentSize
 }
 

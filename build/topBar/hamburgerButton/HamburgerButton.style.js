@@ -1,0 +1,14 @@
+"use strict";
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.StyledHamburgerButton = void 0;
+var styled_components_1 = __importDefault(require("styled-components"));
+var branding_1 = require("../../_utils/branding");
+exports.StyledHamburgerButton = styled_components_1.default.button(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  position: relative;\n  min-width: 40px;\n  height: 48px;\n  border: 0;\n  background: transparent;\n  color: ", ";\n  cursor: pointer;\n  user-select: none;\n\n  i {\n    display: block;\n    margin: 0 auto;\n    width: 20px;\n    height: 2px;\n    background-color: currentColor;\n    transition: background-color 50ms linear;\n    transition-delay: 50ms;\n    pointer-events: none;\n  }\n\n  i::before,\n  i::after {\n    content: '';\n    display: block;\n    position: absolute;\n    width: inherit;\n    height: inherit;\n    border-radius: inherit;\n    background-color: currentColor;\n    transition: transform 100ms linear;\n    z-index: inherit;\n  }\n\n  i::before {\n    transform: translateY(-6px);\n  }\n\n  i::after {\n    transform: translateY(6px);\n  }\n\n  &[aria-expanded='true'] i {\n    background-color: transparent;\n    transition-delay: unset;\n  }\n\n  &[aria-expanded='true'] i::before {\n    transform: translateY(0) rotate(135deg);\n  }\n\n  &[aria-expanded='true'] i::after {\n    transform: translateY(0) rotate(45deg);\n  }\n"], ["\n  position: relative;\n  min-width: 40px;\n  height: 48px;\n  border: 0;\n  background: transparent;\n  color: ", ";\n  cursor: pointer;\n  user-select: none;\n\n  i {\n    display: block;\n    margin: 0 auto;\n    width: 20px;\n    height: 2px;\n    background-color: currentColor;\n    transition: background-color 50ms linear;\n    transition-delay: 50ms;\n    pointer-events: none;\n  }\n\n  i::before,\n  i::after {\n    content: '';\n    display: block;\n    position: absolute;\n    width: inherit;\n    height: inherit;\n    border-radius: inherit;\n    background-color: currentColor;\n    transition: transform 100ms linear;\n    z-index: inherit;\n  }\n\n  i::before {\n    transform: translateY(-6px);\n  }\n\n  i::after {\n    transform: translateY(6px);\n  }\n\n  &[aria-expanded='true'] i {\n    background-color: transparent;\n    transition-delay: unset;\n  }\n\n  &[aria-expanded='true'] i::before {\n    transform: translateY(0) rotate(135deg);\n  }\n\n  &[aria-expanded='true'] i::after {\n    transform: translateY(0) rotate(45deg);\n  }\n"])), branding_1.color.lightMidnightGreen);
+var templateObject_1;

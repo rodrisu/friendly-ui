@@ -1,0 +1,20 @@
+import React from 'react';
+import { A11yProps } from '../_utils/interfaces';
+import { Button } from '../button/Button';
+import { NormalizeProps } from '../layout/layoutNormalizer';
+export type ItemDataProps = NormalizeProps & A11yProps & Readonly<{
+    mainTitle: string;
+    mainInfo?: React.ReactNode;
+    data?: string | JSX.Element;
+    dataColor?: string;
+    dataIcon?: JSX.Element;
+    dataInfo?: string;
+    dataStrikeThroughLabel?: string;
+    dataInfoStrikeThroughLabel?: string;
+    className?: string;
+    mainTitleButtonAddon?: React.ReactElement<Button>;
+    tag?: JSX.Element;
+    disabled?: boolean;
+    tagLabel?: string;
+}>;
+export declare const ItemData: (props: ItemDataProps) => React.JSX.Element;

@@ -1,0 +1,18 @@
+"use strict";
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TransitionSection = exports.autoCompleteBaseStyle = exports.sectionBaseStyle = exports.overlayBaseStyle = void 0;
+var styled_components_1 = __importDefault(require("styled-components"));
+var branding_1 = require("../_utils/branding");
+var transitionConfig_1 = require("./transitionConfig");
+exports.overlayBaseStyle = "\n  box-sizing: border-box;\n  width: ".concat(branding_1.componentSizes.searchOverlayWidth, ";\n  border: 1px solid ").concat(branding_1.color.gray, ";\n  border-radius: ").concat(branding_1.radius.l, ";\n  padding: ").concat(branding_1.space.xl, ";\n  padding-top: ").concat(branding_1.space.s, ";\n  box-shadow: ").concat(branding_1.shadow.searchForm, ";\n  background: ").concat(branding_1.color.white, ";\n");
+exports.sectionBaseStyle = "\n  box-sizing: border-box;\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background-color: ".concat(branding_1.color.white, ";\n  overflow: auto;\n  z-index: 999"); /** Same as Modal component for now */
+exports.autoCompleteBaseStyle = "\n  .kirk-textField-wrapper {\n    background: transparent !important;\n    border-radius: 0 !important;\n    border: 0 !important;\n\n    input {\n      font-size: ".concat(branding_1.font.m.size, ";\n      line-height: ").concat(branding_1.font.m.lineHeight, ";\n      background: transparent;\n      border-radius: 0;\n    }\n\n    .kirk-autoComplete-loader {\n      padding-top: 12px;\n    }\n  }\n\n  .kirk-items-list.kirk-autoComplete-list {\n    padding: 0;\n  }\n");
+exports.TransitionSection = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  &.", "-enter {\n    opacity: 0;\n    top: 50%;\n  }\n\n  &.", "-enter-active {\n    top: 0;\n    opacity: 1;\n    transition: opacity ", "ms ease-in-out,\n      top ", "ms ease-in-out;\n  }\n\n  &.", "-exit-active {\n    top: 50%;\n    opacity: 0;\n    transition: top ", "ms ease-in-out,\n      opacity ", "ms ease-in-out;\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    &.kirk-searchForm-section-transition-enter-active,\n    &.kirk-searchForm-section-transition-exit-active {\n      transition-duration: ", "ms !important;\n    }\n  }\n"], ["\n  &.", "-enter {\n    opacity: 0;\n    top: 50%;\n  }\n\n  &.", "-enter-active {\n    top: 0;\n    opacity: 1;\n    transition: opacity ", "ms ease-in-out,\n      top ", "ms ease-in-out;\n  }\n\n  &.", "-exit-active {\n    top: 50%;\n    opacity: 0;\n    transition: top ", "ms ease-in-out,\n      opacity ", "ms ease-in-out;\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    &.kirk-searchForm-section-transition-enter-active,\n    &.kirk-searchForm-section-transition-exit-active {\n      transition-duration: ", "ms !important;\n    }\n  }\n"])), transitionConfig_1.TRANSITION_SECTION_CLASS_NAME, transitionConfig_1.TRANSITION_SECTION_CLASS_NAME, transitionConfig_1.enterTransitionSectionDuration, transitionConfig_1.enterTransitionSectionDuration, transitionConfig_1.TRANSITION_SECTION_CLASS_NAME, transitionConfig_1.exitTransitionSectionDuration, transitionConfig_1.exitTransitionSectionDuration, transitionConfig_1.reducedMotionTransitionDuration);
+var templateObject_1;

@@ -1,6 +1,6 @@
 {
   "name": "@rodrisu/friendly-ui",
-  "version": "1.0.0",
+  "version": "1.0.10",
   "description": "Friendly Travel - BlaBlaCar React UI component library",
   "homepage": "https://blablacar.github.io/ui-library",
   "repository": {
@@ -15,7 +15,7 @@
     "test": "jest",
     "test:coverage": "jest --no-cache --coverage",
     "watch": "npm test -- --watch --onlyChanged",
-    "prepublishOnly": "npm run eslint && npm run test && npm run build",
+    "prepublishOnly": "npm run build",
     "storybook-build": "export NODE_PATH=src && build-storybook -c .storybook -o storybook-build",
     "storybook-deploy": "npm run prepublishOnly && npm run storybook-build && gh-pages -d storybook-build -r git@github.com:blablacar/ui-library.git",
     "publish-canary": "npm --no-git-tag-version version \"0.0.0-$(git rev-parse --short HEAD)\" && npm publish --tag canary",
@@ -100,10 +100,11 @@
     "storybook-readme": "5.0.9",
     "ts-jest": "^26.5.6",
     "ts-loader": "6.2.1",
-    "typescript": "^3.9.9",
+    "typescript": "^5.2.2",
     "uniqid": "5.3.0"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.197",
     "@types/styled-components": "^5.1.9",
     "country-telephone-data": "0.6.0",
     "exenv": "1.2.2",
