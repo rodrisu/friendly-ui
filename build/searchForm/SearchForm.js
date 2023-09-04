@@ -57,11 +57,13 @@ var section_1 = require("./autoComplete/section");
 var overlay_2 = require("./datePicker/overlay");
 var section_2 = require("./datePicker/section");
 var overlay_3 = require("./overlay");
+var overlay_4 = require("./price/overlay");
+var section_3 = require("./price/section");
 var SearchForm_style_1 = require("./SearchForm.style");
 var SearchFormDivider_1 = require("./SearchFormDivider");
 var SlideSwitchTransition_1 = require("./SlideSwitchTransition");
-var overlay_4 = require("./stepper/overlay");
-var section_3 = require("./stepper/section");
+var overlay_5 = require("./stepper/overlay");
+var section_4 = require("./stepper/section");
 var transitionConfig_1 = require("./transitionConfig");
 var SearchFormDisplay;
 (function (SearchFormDisplay) {
@@ -73,6 +75,7 @@ var SearchFormElements;
 (function (SearchFormElements) {
     SearchFormElements["DATEPICKER"] = "DATEPICKER";
     SearchFormElements["STEPPER"] = "STEPPER";
+    SearchFormElements["PRICE"] = "PRICE";
     SearchFormElements["AUTOCOMPLETE_FROM"] = "AUTOCOMPLETE_FROM";
     SearchFormElements["AUTOCOMPLETE_TO"] = "AUTOCOMPLETE_TO";
 })(SearchFormElements || (exports.SearchFormElements = SearchFormElements = {}));
@@ -87,7 +90,7 @@ var getPlaceholderText = function (initial, autocompleted, placeholder) {
 };
 var SearchForm = function (_a) {
     var _b;
-    var className = _a.className, onSubmit = _a.onSubmit, _c = _a.onChange, onChange = _c === void 0 ? function () { } : _c, initialFrom = _a.initialFrom, initialTo = _a.initialTo, disabledFrom = _a.disabledFrom, disabledTo = _a.disabledTo, autocompleteFromPlaceholder = _a.autocompleteFromPlaceholder, autocompleteToPlaceholder = _a.autocompleteToPlaceholder, renderAutocompleteFrom = _a.renderAutocompleteFrom, renderAutocompleteTo = _a.renderAutocompleteTo, _d = _a.renderDatePickerComponent, renderDatePickerComponent = _d === void 0 ? function (props) { return react_1.default.createElement(datePicker_1.DatePicker, __assign({}, props)); } : _d, datepickerProps = _a.datepickerProps, stepperProps = _a.stepperProps, submitButtonText = _a.submitButtonText, _e = _a.display, display = _e === void 0 ? SearchFormDisplay.AUTO : _e, _f = _a.showDateField, showDateField = _f === void 0 ? true : _f, _g = _a.submitButtonRef, submitButtonRef = _g === void 0 ? null : _g, _h = _a.showInvertButton, showInvertButton = _h === void 0 ? true : _h, addon = _a.addon;
+    var className = _a.className, onSubmit = _a.onSubmit, _c = _a.onChange, onChange = _c === void 0 ? function () { } : _c, initialFrom = _a.initialFrom, initialTo = _a.initialTo, disabledFrom = _a.disabledFrom, disabledTo = _a.disabledTo, autocompleteFromPlaceholder = _a.autocompleteFromPlaceholder, autocompleteToPlaceholder = _a.autocompleteToPlaceholder, renderAutocompleteFrom = _a.renderAutocompleteFrom, renderAutocompleteTo = _a.renderAutocompleteTo, _d = _a.renderDatePickerComponent, renderDatePickerComponent = _d === void 0 ? function (props) { return react_1.default.createElement(datePicker_1.DatePicker, __assign({}, props)); } : _d, datepickerProps = _a.datepickerProps, stepperProps = _a.stepperProps, priceProps = _a.priceProps, submitButtonText = _a.submitButtonText, _e = _a.display, display = _e === void 0 ? SearchFormDisplay.AUTO : _e, _f = _a.showDateField, showDateField = _f === void 0 ? true : _f, _g = _a.submitButtonRef, submitButtonRef = _g === void 0 ? null : _g, _h = _a.showInvertButton, showInvertButton = _h === void 0 ? true : _h, addon = _a.addon;
     var isLargeMediaSize = (0, mediaSizeProvider_1.useIsLargeMediaSize)();
     var isSmallMediaSize = !isLargeMediaSize;
     // We allow the component display to be overriden by a prop
@@ -99,6 +102,7 @@ var SearchForm = function (_a) {
     var animationKey = react_1.default.useRef(0);
     var _k = (0, react_1.useState)((_b = {},
         _b[SearchFormElements.STEPPER] = stepperProps.defaultValue,
+        _b[SearchFormElements.PRICE] = priceProps.defaultValue,
         _b[SearchFormElements.DATEPICKER] = datepickerProps.defaultValue,
         _b)), formValues = _k[0], setFormValues = _k[1];
     (0, react_1.useEffect)(function () {
@@ -109,6 +113,12 @@ var SearchForm = function (_a) {
             return "".concat(formValues[SearchFormElements.STEPPER]);
         }
         return stepperProps.format(formValues[SearchFormElements.STEPPER]);
+    };
+    var getPriceFormattedValue = function () {
+        if (priceProps.format == null) {
+            return "".concat(formValues[SearchFormElements.PRICE]);
+        }
+        return priceProps.format(formValues[SearchFormElements.PRICE]);
     };
     var getDatepickerFormattedValue = function () {
         if (datepickerProps.format == null) {
@@ -157,6 +167,24 @@ var SearchForm = function (_a) {
             setFormValues(function (currentFormValues) {
                 var _a;
                 return (__assign(__assign({}, currentFormValues), (_a = {}, _a[SearchFormElements.STEPPER] = value, _a)));
+            });
+        },
+    };
+    var priceConfig = {
+        name: 'price',
+        min: priceProps.min,
+        max: priceProps.max,
+        itemTitle: getPriceFormattedValue(),
+        title: priceProps.title,
+        increaseLabel: priceProps.increaseLabel,
+        decreaseLabel: priceProps.decreaseLabel,
+        value: formValues[SearchFormElements.PRICE],
+        onChange: function (_a) {
+            var value = _a.value;
+            closeElement(SearchFormElements.PRICE);
+            setFormValues(function (currentFormValues) {
+                var _a;
+                return (__assign(__assign({}, currentFormValues), (_a = {}, _a[SearchFormElements.PRICE] = value, _a)));
             });
         },
     };
@@ -276,7 +304,7 @@ var SearchForm = function (_a) {
                     react_1.default.createElement(standardSeat_1.StandardSeatIcon, null),
                     react_1.default.createElement(title_1.TextTitle, { className: "kirk-search-ellipsis" }, getStepperFormattedValue()))),
             react_1.default.createElement(overlay_3.Overlay, { shouldDisplay: isLargeMediaSize && elementOpened === SearchFormElements.STEPPER, closeOnBlur: function () { return closeElement(SearchFormElements.STEPPER); }, className: "kirk-searchForm-overlay kirk-searchForm-stepper" },
-                react_1.default.createElement(overlay_4.StepperOverlay, __assign({}, stepperConfig, { onChange: function (_a) {
+                react_1.default.createElement(overlay_5.StepperOverlay, __assign({}, stepperConfig, { onChange: function (_a) {
                         var value = _a.value;
                         setFormValues(function (currentFormValues) {
                             var _a;
@@ -286,7 +314,24 @@ var SearchForm = function (_a) {
             isSmallMediaSize &&
                 exenv_1.canUseDOM &&
                 (0, react_dom_1.createPortal)(react_1.default.createElement(react_transition_group_1.CSSTransition, __assign({ in: elementOpened === SearchFormElements.STEPPER }, transitionSectionConfig),
-                    react_1.default.createElement(section_3.StepperSection, __assign({}, stepperConfig, { confirmLabel: stepperProps.confirmLabel, onClose: function () { return closeElement(SearchFormElements.STEPPER); } }))), document.body)),
+                    react_1.default.createElement(section_4.StepperSection, __assign({}, stepperConfig, { confirmLabel: stepperProps.confirmLabel, onClose: function () { return closeElement(SearchFormElements.STEPPER); } }))), document.body),
+            react_1.default.createElement(SearchFormDivider_1.VerticalDivider, null),
+            react_1.default.createElement("div", { className: "kirk-searchForm-price" },
+                react_1.default.createElement("button", { type: "button", className: "kirk-search-button", onClick: function () { return setElementOpened(SearchFormElements.PRICE); } },
+                    react_1.default.createElement(standardSeat_1.StandardSeatIcon, null),
+                    react_1.default.createElement(title_1.TextTitle, { className: "kirk-search-ellipsis" }, getPriceFormattedValue()))),
+            react_1.default.createElement(overlay_3.Overlay, { shouldDisplay: isLargeMediaSize && elementOpened === SearchFormElements.PRICE, closeOnBlur: function () { return closeElement(SearchFormElements.PRICE); }, className: "kirk-searchForm-overlay kirk-searchForm-price" },
+                react_1.default.createElement(overlay_4.PriceOverlay, __assign({}, priceConfig, { onChange: function (_a) {
+                        var value = _a.value;
+                        setFormValues(function (currentFormValues) {
+                            var _a;
+                            return (__assign(__assign({}, currentFormValues), (_a = {}, _a[SearchFormElements.PRICE] = value, _a)));
+                        });
+                    } }))),
+            isSmallMediaSize &&
+                exenv_1.canUseDOM &&
+                (0, react_dom_1.createPortal)(react_1.default.createElement(react_transition_group_1.CSSTransition, __assign({ in: elementOpened === SearchFormElements.PRICE }, transitionSectionConfig),
+                    react_1.default.createElement(section_3.PriceSection, __assign({}, priceConfig, { confirmLabel: priceProps.confirmLabel, onClose: function () { return closeElement(SearchFormElements.PRICE); } }))), document.body)),
         isSmallDisplay && addon && (react_1.default.createElement(react_1.Fragment, null,
             react_1.default.createElement(SearchFormDivider_1.ResponsiveDivider, { "$isSmallDisplay": isSmallDisplay, "$isLargeDisplay": isLargeDisplay }),
             react_1.default.createElement("div", { className: "kirk-searchForm-addon" }, addon))),

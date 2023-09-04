@@ -1,1 +1,1 @@
-export { SearchFormProps, SearchFormDatePickerProps, SearchFormStepperProps, SearchFormElements, SearchFormValues, SearchForm, SearchFormDisplay, } from './SearchForm';
+export { SearchFormProps, SearchFormDatePickerProps, SearchFormStepperProps, SearchFormPriceProps, SearchFormElements, SearchFormValues, SearchForm, SearchFormDisplay, } from './SearchForm';

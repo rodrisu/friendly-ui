@@ -12,6 +12,7 @@ const positionAutocompleteFrom = '-8px'
 const positionAutocompleteTo = '268px'
 const positionDateStepper = '473px'
 const positionStepper = '135px'
+const positionPrice = '55px'
 
 export const StyledSearchForm = styled.form<{
   $isSmallDisplay: boolean
@@ -119,7 +120,7 @@ export const StyledSearchForm = styled.form<{
     width: ${submitButtonWidth};
     height: ${formHeight};
     border-radius: 0 ${radius.l} ${radius.l} 0;
-    background-color: ${color.blue};
+    background-color: ${color.green};
     padding: 0;
     justify-content: center;
   }
@@ -159,6 +160,14 @@ export const StyledSearchForm = styled.form<{
         ? `-${space.m}`
         : `calc(${formHeight} + ${formHeight} + ${space.m} + ${space.m})`};
     left: ${props => (props.$isLargeDisplay ? positionStepper : '-35px')};
+  }
+
+  .kirk-priceOverlay {
+    top: ${props =>
+      props.$isLargeDisplay
+        ? `-${space.m}`
+        : `calc(${formHeight} + ${formHeight} + ${space.m} + ${space.m})`};
+    left: ${props => (props.$isLargeDisplay ? positionPrice : '-35px')};
   }
 
   .kirk-search-ellipsis {
