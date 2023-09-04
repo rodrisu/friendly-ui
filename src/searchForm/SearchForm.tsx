@@ -20,6 +20,8 @@ import { AutoCompleteSection } from './autoComplete/section'
 import { DatePickerOverlay, DatePickerOverlayProps } from './datePicker/overlay'
 import { DatePickerSection } from './datePicker/section'
 import { Overlay } from './overlay'
+import { PriceOverlay } from './price/overlay'
+import { PriceSection } from './price/section'
 import { StyledSearchForm } from './SearchForm.style'
 import { ResponsiveDivider, VerticalDivider } from './SearchFormDivider'
 import { SlideSwitchTransition, SlideSwitchTransitionSide } from './SlideSwitchTransition'
@@ -48,6 +50,7 @@ export type SearchFormProps = Readonly<{
   renderDatePickerComponent?: DatePickerOverlayProps['renderDatePickerComponent']
   datepickerProps: SearchFormDatePickerProps
   stepperProps: SearchFormStepperProps
+  priceProps: SearchFormPriceProps
   submitButtonText?: string
   submitButtonRef?: React.RefObject<HTMLButtonElement> | null
   display?: SearchFormDisplay
@@ -72,9 +75,21 @@ export type SearchFormStepperProps = Readonly<{
   format?: (value: number) => string
 }>
 
+export type SearchFormPriceProps = Readonly<{
+  min: number
+  max: number
+  defaultValue: number
+  increaseLabel: string
+  decreaseLabel: string
+  title: string
+  confirmLabel: string
+  format?: (value: number) => string
+}>
+
 export enum SearchFormElements {
   DATEPICKER = 'DATEPICKER',
   STEPPER = 'STEPPER',
+  PRICE = 'PRICE',
   AUTOCOMPLETE_FROM = 'AUTOCOMPLETE_FROM',
   AUTOCOMPLETE_TO = 'AUTOCOMPLETE_TO',
 }
@@ -82,6 +97,7 @@ export enum SearchFormElements {
 export type SearchFormValues = {
   DATEPICKER: string
   STEPPER: number
+  PRICE: number
   AUTOCOMPLETE_FROM?: AutocompleteOnChange
   AUTOCOMPLETE_TO?: AutocompleteOnChange
 }
@@ -116,6 +132,7 @@ export const SearchForm = ({
   renderDatePickerComponent = props => <DatePicker {...props} />,
   datepickerProps,
   stepperProps,
+  priceProps,
   submitButtonText,
   display = SearchFormDisplay.AUTO,
   showDateField = true,
@@ -140,6 +157,7 @@ export const SearchForm = ({
 
   const [formValues, setFormValues] = useState<SearchFormValues>({
     [SearchFormElements.STEPPER]: stepperProps.defaultValue,
+    [SearchFormElements.PRICE]: priceProps.defaultValue,
     [SearchFormElements.DATEPICKER]: datepickerProps.defaultValue,
   })
 
@@ -153,6 +171,14 @@ export const SearchForm = ({
     }
 
     return stepperProps.format(formValues[SearchFormElements.STEPPER])
+  }
+
+  const getPriceFormattedValue = () => {
+    if (priceProps.format == null) {
+      return `${formValues[SearchFormElements.PRICE]}`
+    }
+
+    return priceProps.format(formValues[SearchFormElements.PRICE])
   }
 
   const getDatepickerFormattedValue = () => {
@@ -209,6 +235,26 @@ export const SearchForm = ({
         (currentFormValues: SearchFormValues): SearchFormValues => ({
           ...currentFormValues,
           [SearchFormElements.STEPPER]: value as number,
+        }),
+      )
+    },
+  }
+
+  const priceConfig = {
+    name: 'price',
+    min: priceProps.min,
+    max: priceProps.max,
+    itemTitle: getPriceFormattedValue(),
+    title: priceProps.title,
+    increaseLabel: priceProps.increaseLabel,
+    decreaseLabel: priceProps.decreaseLabel,
+    value: formValues[SearchFormElements.PRICE],
+    onChange: ({ value }: OnChangeParameters) => {
+      closeElement(SearchFormElements.PRICE)
+      setFormValues(
+        (currentFormValues: SearchFormValues): SearchFormValues => ({
+          ...currentFormValues,
+          [SearchFormElements.PRICE]: value as number,
         }),
       )
     },
@@ -511,6 +557,53 @@ export const SearchForm = ({
                 {...stepperConfig}
                 confirmLabel={stepperProps.confirmLabel}
                 onClose={() => closeElement(SearchFormElements.STEPPER)}
+              />
+            </CSSTransition>,
+            document.body,
+          )}
+
+        <VerticalDivider />
+
+        <div className="kirk-searchForm-price">
+          <button
+            type="button"
+            className="kirk-search-button"
+            onClick={() => setElementOpened(SearchFormElements.PRICE)}
+          >
+            <StandardSeat />
+            <TextTitle className="kirk-search-ellipsis">{getPriceFormattedValue()}</TextTitle>
+          </button>
+        </div>
+
+        <Overlay
+          shouldDisplay={isLargeMediaSize && elementOpened === SearchFormElements.PRICE}
+          closeOnBlur={() => closeElement(SearchFormElements.PRICE)}
+          className="kirk-searchForm-overlay kirk-searchForm-price"
+        >
+          <PriceOverlay
+            {...priceConfig}
+            onChange={({ value }) => {
+              setFormValues(
+                (currentFormValues: SearchFormValues): SearchFormValues => ({
+                  ...currentFormValues,
+                  [SearchFormElements.PRICE]: value as number,
+                }),
+              )
+            }}
+          />
+        </Overlay>
+
+        {isSmallMediaSize &&
+          canUseDOM &&
+          createPortal(
+            <CSSTransition
+              in={elementOpened === SearchFormElements.PRICE}
+              {...transitionSectionConfig}
+            >
+              <PriceSection
+                {...priceConfig}
+                confirmLabel={priceProps.confirmLabel}
+                onClose={() => closeElement(SearchFormElements.PRICE)}
               />
             </CSSTransition>,
             document.body,

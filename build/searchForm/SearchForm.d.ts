@@ -22,6 +22,7 @@ export type SearchFormProps = Readonly<{
     renderDatePickerComponent?: DatePickerOverlayProps['renderDatePickerComponent'];
     datepickerProps: SearchFormDatePickerProps;
     stepperProps: SearchFormStepperProps;
+    priceProps: SearchFormPriceProps;
     submitButtonText?: string;
     submitButtonRef?: React.RefObject<HTMLButtonElement> | null;
     display?: SearchFormDisplay;
@@ -43,16 +44,28 @@ export type SearchFormStepperProps = Readonly<{
     confirmLabel: string;
     format?: (value: number) => string;
 }>;
+export type SearchFormPriceProps = Readonly<{
+    min: number;
+    max: number;
+    defaultValue: number;
+    increaseLabel: string;
+    decreaseLabel: string;
+    title: string;
+    confirmLabel: string;
+    format?: (value: number) => string;
+}>;
 export declare enum SearchFormElements {
     DATEPICKER = "DATEPICKER",
     STEPPER = "STEPPER",
+    PRICE = "PRICE",
     AUTOCOMPLETE_FROM = "AUTOCOMPLETE_FROM",
     AUTOCOMPLETE_TO = "AUTOCOMPLETE_TO"
 }
 export type SearchFormValues = {
     DATEPICKER: string;
     STEPPER: number;
+    PRICE: number;
     AUTOCOMPLETE_FROM?: AutocompleteOnChange;
     AUTOCOMPLETE_TO?: AutocompleteOnChange;
 };
-export declare const SearchForm: ({ className, onSubmit, onChange, initialFrom, initialTo, disabledFrom, disabledTo, autocompleteFromPlaceholder, autocompleteToPlaceholder, renderAutocompleteFrom, renderAutocompleteTo, renderDatePickerComponent, datepickerProps, stepperProps, submitButtonText, display, showDateField, submitButtonRef, showInvertButton, addon, }: SearchFormProps) => React.JSX.Element;
+export declare const SearchForm: ({ className, onSubmit, onChange, initialFrom, initialTo, disabledFrom, disabledTo, autocompleteFromPlaceholder, autocompleteToPlaceholder, renderAutocompleteFrom, renderAutocompleteTo, renderDatePickerComponent, datepickerProps, stepperProps, priceProps, submitButtonText, display, showDateField, submitButtonRef, showInvertButton, addon, }: SearchFormProps) => React.JSX.Element;
