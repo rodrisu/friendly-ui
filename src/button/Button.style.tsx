@@ -84,6 +84,11 @@ export const StyledButton = styled(Button)`
     color: ${color.white};
   }
 
+  &.kirk-button-green {
+    background-color: ${color.green};
+    color: ${color.white};
+  }
+
   &.kirk-button-shadowed {
     border: ${borderSize} solid ${color.white};
     box-shadow: ${shadow.default};
@@ -94,6 +99,12 @@ export const StyledButton = styled(Button)`
   &.kirk-button-primary:focus,
   &.kirk-button-primary:active {
     background-color: ${color.darkBlue};
+  }
+
+  &.kirk-button-green:hover,
+  &.kirk-button-green:focus,
+  &.kirk-button-green:active {
+    background-color: ${color.blaBlaCarDailyBrand};
   }
 
   &.kirk-button-secondary {

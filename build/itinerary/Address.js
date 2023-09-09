@@ -32,8 +32,8 @@ var bullet_1 = require("../bullet");
 var Address_style_1 = require("./Address.style");
 var ItineraryItem_1 = require("./internals/ItineraryItem");
 var Address = function (_a) {
-    var prevLine = _a.prevLine, nextLine = _a.nextLine, label = _a.label, subLabel = _a.subLabel, time = _a.time, _b = _a.bullet, bullet = _b === void 0 ? react_1.default.createElement(bullet_1.Bullet, { type: bullet_1.BulletTypes.DEFAULT }) : _b, href = _a.href, proximity = _a.proximity, _c = _a.highlighted, highlighted = _c === void 0 ? false : _c, props = __rest(_a, ["prevLine", "nextLine", "label", "subLabel", "time", "bullet", "href", "proximity", "highlighted"]);
-    return (react_1.default.createElement(ItineraryItem_1.ItineraryItem, __assign({ prevLine: prevLine, nextLine: nextLine, time: time, bullet: bullet, href: href }, (0, interfaces_1.pickA11yProps)(props)),
+    var prevLine = _a.prevLine, nextLine = _a.nextLine, label = _a.label, subLabel = _a.subLabel, time = _a.time, timeSubLabelItem = _a.timeSubLabelItem, _b = _a.bullet, bullet = _b === void 0 ? react_1.default.createElement(bullet_1.Bullet, { type: bullet_1.BulletTypes.DEFAULT }) : _b, href = _a.href, proximity = _a.proximity, _c = _a.highlighted, highlighted = _c === void 0 ? false : _c, props = __rest(_a, ["prevLine", "nextLine", "label", "subLabel", "time", "timeSubLabelItem", "bullet", "href", "proximity", "highlighted"]);
+    return (react_1.default.createElement(ItineraryItem_1.ItineraryItem, __assign({ prevLine: prevLine, nextLine: nextLine, time: time, timeSubLabelItem: timeSubLabelItem, bullet: bullet, href: href }, (0, interfaces_1.pickA11yProps)(props)),
         react_1.default.createElement(Address_style_1.StyledContent, { hasLink: !!href },
             react_1.default.createElement(Address_style_1.StyledLabel, { "$highlighted": highlighted }, label),
             subLabel && react_1.default.createElement(Address_style_1.StyledSubLabel, { "$highlighted": highlighted }, subLabel),

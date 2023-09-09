@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 import { Card } from '../_internals/card'
 import { color, horizontalSpace, radius, space } from '../_utils/branding'
-import { TextBodyStrikethrough } from '../typography/bodyStrikethrough'
 import { TextTitleStrong } from '../typography/titleStrong'
+import { TextBody } from '../typography/body'
 
 export const StyledTripCard = styled(Card)`
   & {
@@ -108,13 +108,18 @@ export const StyledTripCard = styled(Card)`
     line-height: 38px;
     text-align: center;
   }
+
+  & .kirk-tripCard-button {
+    display: flex;
+    justify-content: flex-end;
+  }
 `
 
 export const StyledPrice = styled(TextTitleStrong)<{ $hasDiscount?: boolean }>`
   display: block;
   flex-shrink: 0;
   padding-top: ${space.m};
-  ${props => (props.$hasDiscount ? `color: ${color.blue}` : '')};
+  ${props => (props.$hasDiscount ? `color: ${color.green}` : '')};
   white-space: nowrap;
 `
 
@@ -122,7 +127,7 @@ export const StyledCardTag = styled.div`
   padding-bottom: ${space.m};
 `
 
-export const StyledOriginalPrice = styled(TextBodyStrikethrough)`
+export const StyledOriginalPrice = styled(TextBody)`
   white-space: nowrap;
 `
 

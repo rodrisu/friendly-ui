@@ -81,6 +81,7 @@ var ButtonStatus;
     ButtonStatus["UNSTYLED"] = "unstyled";
     ButtonStatus["LOADING"] = "loading";
     ButtonStatus["CHECKED"] = "checked";
+    ButtonStatus["GREEN"] = "green";
 })(ButtonStatus || (exports.ButtonStatus = ButtonStatus = {}));
 var eventHandler = function (componentEvent, childEvent) { return function (event) {
     // eslint-disable-next-line no-unused-expressions

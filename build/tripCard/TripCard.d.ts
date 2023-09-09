@@ -42,6 +42,7 @@ export type TripCardProps = A11yProps & Readonly<{
     mainTitle?: string;
     tag?: string;
     subHeader?: string;
+    button?: JSX.Element;
 }>;
 export declare const TripCard: (props: TripCardProps) => React.JSX.Element;
 export {};

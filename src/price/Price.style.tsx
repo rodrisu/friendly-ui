@@ -19,6 +19,12 @@ export const StyledPrice = styled.div<NormalizeProps & { valueColor: string }>`
     flex: 1;
   }
 
+  & .kirk-price-input {
+    display: flex;
+    position: relative;
+    flex: 1;
+  }
+
   & .kirk-price-value {
     display: inline;
     padding: 0 ${space.l};

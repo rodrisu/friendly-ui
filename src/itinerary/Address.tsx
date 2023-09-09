@@ -28,6 +28,7 @@ export const Address = ({
   label,
   subLabel,
   time,
+  timeSubLabelItem,
   bullet = <Bullet type={BulletTypes.DEFAULT} />,
   href,
   proximity,
@@ -38,6 +39,7 @@ export const Address = ({
     prevLine={prevLine}
     nextLine={nextLine}
     time={time}
+    timeSubLabelItem={timeSubLabelItem}
     bullet={bullet}
     href={href}
     {...pickA11yProps(props)}

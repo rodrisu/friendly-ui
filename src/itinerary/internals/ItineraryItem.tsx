@@ -2,6 +2,7 @@ import React from 'react'
 import isEmpty from 'lodash.isempty'
 
 import { A11yProps, pickA11yProps } from '../../_utils/interfaces'
+import { TextBody } from '../../typography/body'
 import { Bullet } from '../../bullet'
 import { TextTitleStrong } from '../../typography/titleStrong'
 import { StyledItineraryItem } from './ItineraryItem.style'
@@ -11,12 +12,14 @@ export type ItineraryItemProps = A11yProps &
   LineProps &
   Readonly<{
     time?: string
+    timeSubLabelItem?: string
     children: React.ReactNode
     href?: string | JSX.Element
   }>
 
 export const ItineraryItem = ({
   time = null,
+  timeSubLabelItem = null,
   prevLine,
   nextLine,
   children,
@@ -41,9 +44,15 @@ export const ItineraryItem = ({
   return (
     <StyledItineraryItem {...pickA11yProps(props)} hasLink={!!href}>
       <Wrapper {...wrapperProps}>
-        <TextTitleStrong as="time" aria-hidden={isEmpty(time)}>
-          {time}
-        </TextTitleStrong>
+        {/* <div style={{ display: 'flex', flexDirection: 'column' }}> DESCOMENTAR SI SE VA A UTILIZAR HORA Y DURACION*/}
+        <div>
+          <TextTitleStrong as="time" aria-hidden={isEmpty(time)}>
+            {time}
+          </TextTitleStrong>
+          <TextBody as="span" aria-aria-label='Duration of ride'>
+            {timeSubLabelItem}
+          </TextBody>
+        </div>
         <Line prevLine={prevLine} nextLine={nextLine} bullet={bullet} />
         {children}
       </Wrapper>

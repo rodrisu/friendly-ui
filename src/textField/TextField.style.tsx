@@ -104,6 +104,12 @@ export const StyledTextField = styled.div`
     animation: textFieldError ${transition.duration.fast} ease-in-out;
   }
 
+  .kirk-textField-wrapper {
+    display: flex;
+    position: relative;
+    flex: 1;
+  }
+
   &.kirk-error input {
     background-color: ${color.lightRed};
   }

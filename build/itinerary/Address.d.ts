@@ -9,4 +9,4 @@ export type AddressProps = A11yProps & Omit<ItineraryItemProps, 'children'> & Re
     proximity?: React.ReactElement<ProximityProps>;
     highlighted?: boolean;
 }>;
-export declare const Address: ({ prevLine, nextLine, label, subLabel, time, bullet, href, proximity, highlighted, ...props }: AddressProps) => React.JSX.Element;
+export declare const Address: ({ prevLine, nextLine, label, subLabel, time, timeSubLabelItem, bullet, href, proximity, highlighted, ...props }: AddressProps) => React.JSX.Element;
