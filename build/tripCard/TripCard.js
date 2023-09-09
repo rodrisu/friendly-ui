@@ -111,7 +111,7 @@ var createTransporterProfileProps = function (driver, flags, titles) {
     };
 };
 var TripCard = function (props) {
-    var className = props.className, href = props.href, itinerary = props.itinerary, driver = props.driver, _a = props.passengers, passengers = _a === void 0 ? [] : _a, originalPrice = props.originalPrice, price = props.price, _b = props.flags, flags = _b === void 0 ? {} : _b, _c = props.titles, titles = _c === void 0 ? {} : _c, _d = props.statusInformation, statusInformation = _d === void 0 ? null : _d, _e = props.mainTitle, mainTitle = _e === void 0 ? null : _e, _f = props.tag, tag = _f === void 0 ? '' : _f, _g = props.subHeader, subHeader = _g === void 0 ? '' : _g;
+    var className = props.className, href = props.href, itinerary = props.itinerary, driver = props.driver, _a = props.passengers, passengers = _a === void 0 ? [] : _a, originalPrice = props.originalPrice, price = props.price, _b = props.flags, flags = _b === void 0 ? {} : _b, _c = props.titles, titles = _c === void 0 ? {} : _c, _d = props.statusInformation, statusInformation = _d === void 0 ? null : _d, _e = props.mainTitle, mainTitle = _e === void 0 ? null : _e, _f = props.tag, tag = _f === void 0 ? '' : _f, _g = props.subHeader, subHeader = _g === void 0 ? '' : _g, button = props.button;
     var a11yAttrs = (0, interfaces_1.pickA11yProps)(props);
     var shouldDisplayPassengers = !(0, lodash_isempty_1.default)(passengers);
     var transporterProfileProps = createTransporterProfileProps(driver, flags, titles);
@@ -149,6 +149,7 @@ var TripCard = function (props) {
                         .slice(0, PASSENGERS_TO_DISPLAY - 1)
                         .reverse()
                         .map(renderPassenger))),
-                shouldDisplayTransporterProfile && (react_1.default.createElement(profileLeft_1.ProfileLeft, __assign({ className: "kirk-tripCard-profile" }, transporterProfileProps, { noHorizontalSpacing: true })))))))));
+                shouldDisplayTransporterProfile && (react_1.default.createElement(profileLeft_1.ProfileLeft, __assign({ className: "kirk-tripCard-profile" }, transporterProfileProps, { noHorizontalSpacing: true }))),
+                react_1.default.createElement("div", { className: "kirk-tripCard-button" }, button)))))));
 };
 exports.TripCard = TripCard;

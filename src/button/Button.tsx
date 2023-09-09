@@ -16,6 +16,7 @@ export enum ButtonStatus {
   UNSTYLED = 'unstyled',
   LOADING = 'loading',
   CHECKED = 'checked',
+  GREEN = 'green',
 }
 
 export type ButtonProps = A11yProps &

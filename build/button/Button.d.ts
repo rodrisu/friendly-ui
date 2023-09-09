@@ -9,7 +9,8 @@ export declare enum ButtonStatus {
     VKONTAKTE = "vkontakte",
     UNSTYLED = "unstyled",
     LOADING = "loading",
-    CHECKED = "checked"
+    CHECKED = "checked",
+    GREEN = "green"
 }
 export type ButtonProps = A11yProps & Readonly<{
     children: string | number | React.ReactNode;

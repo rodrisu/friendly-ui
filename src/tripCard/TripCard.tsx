@@ -74,6 +74,7 @@ export type TripCardProps = A11yProps &
     mainTitle?: string
     tag?: string
     subHeader?: string
+    button?: JSX.Element
   }>
 
 const renderPassenger = (passenger: User) => (
@@ -149,6 +150,7 @@ export const TripCard = (props: TripCardProps) => {
     mainTitle = null,
     tag = '',
     subHeader = '',
+    button,
   } = props
   const a11yAttrs = pickA11yProps<TripCardProps>(props)
 
@@ -233,6 +235,9 @@ export const TripCard = (props: TripCardProps) => {
                   noHorizontalSpacing
                 />
               )}
+
+              <div className="kirk-tripCard-button">{button}</div>
+
             </div>
           </Fragment>,
         )}
