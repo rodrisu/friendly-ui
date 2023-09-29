@@ -1,8 +1,8 @@
+import cc from 'classcat'
+import { canUseDOM } from 'exenv'
 import React, { Fragment, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
-import cc from 'classcat'
-import { canUseDOM } from 'exenv'
 
 import { color } from '../_utils/branding'
 import { useIsLargeMediaSize } from '../_utils/mediaSizeProvider'
@@ -11,6 +11,7 @@ import { AutocompleteOnChange, AutoCompleteProps } from '../autoComplete'
 import { Bullet, BulletTypes } from '../bullet'
 import { DatePicker } from '../datePicker'
 import { CalendarIcon } from '../icon/calendarIcon'
+import { CoinIcon } from '../icon/coinIcon'
 import { DoubleArrowIcon } from '../icon/doubleArrowIcon'
 import { SearchIcon } from '../icon/searchIcon'
 import { StandardSeatIcon as StandardSeat } from '../icon/standardSeat'
@@ -570,7 +571,7 @@ export const SearchForm = ({
             className="kirk-search-button"
             onClick={() => setElementOpened(SearchFormElements.PRICE)}
           >
-            <StandardSeat />
+            <CoinIcon />
             <TextTitle className="kirk-search-ellipsis">{getPriceFormattedValue()}</TextTitle>
           </button>
         </div>

@@ -38,16 +38,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchForm = exports.SearchFormElements = exports.SearchFormDisplay = void 0;
+var classcat_1 = __importDefault(require("classcat"));
+var exenv_1 = require("exenv");
 var react_1 = __importStar(require("react"));
 var react_dom_1 = require("react-dom");
 var react_transition_group_1 = require("react-transition-group");
-var classcat_1 = __importDefault(require("classcat"));
-var exenv_1 = require("exenv");
 var branding_1 = require("../_utils/branding");
 var mediaSizeProvider_1 = require("../_utils/mediaSizeProvider");
 var bullet_1 = require("../bullet");
 var datePicker_1 = require("../datePicker");
 var calendarIcon_1 = require("../icon/calendarIcon");
+var coinIcon_1 = require("../icon/coinIcon");
 var doubleArrowIcon_1 = require("../icon/doubleArrowIcon");
 var searchIcon_1 = require("../icon/searchIcon");
 var standardSeat_1 = require("../icon/standardSeat");
@@ -318,7 +319,7 @@ var SearchForm = function (_a) {
             react_1.default.createElement(SearchFormDivider_1.VerticalDivider, null),
             react_1.default.createElement("div", { className: "kirk-searchForm-price" },
                 react_1.default.createElement("button", { type: "button", className: "kirk-search-button", onClick: function () { return setElementOpened(SearchFormElements.PRICE); } },
-                    react_1.default.createElement(standardSeat_1.StandardSeatIcon, null),
+                    react_1.default.createElement(coinIcon_1.CoinIcon, null),
                     react_1.default.createElement(title_1.TextTitle, { className: "kirk-search-ellipsis" }, getPriceFormattedValue()))),
             react_1.default.createElement(overlay_3.Overlay, { shouldDisplay: isLargeMediaSize && elementOpened === SearchFormElements.PRICE, closeOnBlur: function () { return closeElement(SearchFormElements.PRICE); }, className: "kirk-searchForm-overlay kirk-searchForm-price" },
                 react_1.default.createElement(overlay_4.PriceOverlay, __assign({}, priceConfig, { onChange: function (_a) {
