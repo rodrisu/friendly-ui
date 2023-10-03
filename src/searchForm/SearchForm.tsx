@@ -1,8 +1,8 @@
+import cc from 'classcat'
+import { canUseDOM } from 'exenv'
 import React, { Fragment, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
-import cc from 'classcat'
-import { canUseDOM } from 'exenv'
 
 import { color } from '../_utils/branding'
 import { useIsLargeMediaSize } from '../_utils/mediaSizeProvider'
@@ -11,6 +11,8 @@ import { AutocompleteOnChange, AutoCompleteProps } from '../autoComplete'
 import { Bullet, BulletTypes } from '../bullet'
 import { DatePicker } from '../datePicker'
 import { CalendarIcon } from '../icon/calendarIcon'
+import { CarIcon } from '../icon/carIcon'
+import { CoinIcon } from '../icon/coinIcon'
 import { DoubleArrowIcon } from '../icon/doubleArrowIcon'
 import { SearchIcon } from '../icon/searchIcon'
 import { StandardSeatIcon as StandardSeat } from '../icon/standardSeat'
@@ -41,12 +43,16 @@ export type SearchFormProps = Readonly<{
   onChange?: (formValues: SearchFormValues) => void
   disabledFrom?: boolean
   disabledTo?: boolean
+  disabledVehicle?: boolean
   initialFrom?: string
   initialTo?: string
+  initialVehicle?: string
   autocompleteFromPlaceholder: AutoCompleteProps['placeholder']
   autocompleteToPlaceholder: AutoCompleteProps['placeholder']
+  autocompleteVehiclePlaceholder: AutoCompleteProps['placeholder']
   renderAutocompleteFrom: AutoCompleteOverlayProps['renderAutocompleteComponent']
   renderAutocompleteTo: AutoCompleteOverlayProps['renderAutocompleteComponent']
+  renderAutocompleteVehicle?: AutoCompleteOverlayProps['renderAutocompleteComponent']
   renderDatePickerComponent?: DatePickerOverlayProps['renderDatePickerComponent']
   datepickerProps: SearchFormDatePickerProps
   stepperProps: SearchFormStepperProps
@@ -55,6 +61,7 @@ export type SearchFormProps = Readonly<{
   submitButtonRef?: React.RefObject<HTMLButtonElement> | null
   display?: SearchFormDisplay
   showDateField?: boolean
+  showVehicleField?: boolean
   showInvertButton?: boolean
   addon?: JSX.Element
 }>
@@ -92,6 +99,7 @@ export enum SearchFormElements {
   PRICE = 'PRICE',
   AUTOCOMPLETE_FROM = 'AUTOCOMPLETE_FROM',
   AUTOCOMPLETE_TO = 'AUTOCOMPLETE_TO',
+  AUTOCOMPLETE_VEHICLE = 'AUTOCOMPLETE_VEHICLE',
 }
 
 export type SearchFormValues = {
@@ -100,6 +108,7 @@ export type SearchFormValues = {
   PRICE: number
   AUTOCOMPLETE_FROM?: AutocompleteOnChange
   AUTOCOMPLETE_TO?: AutocompleteOnChange
+  AUTOCOMPLETE_VEHICLE?: AutocompleteOnChange
 }
 
 const getPlaceholderText = (
@@ -120,15 +129,19 @@ const getPlaceholderText = (
 export const SearchForm = ({
   className,
   onSubmit,
-  onChange = () => {},
+  onChange = () => { },
   initialFrom,
   initialTo,
+  initialVehicle,
   disabledFrom,
   disabledTo,
+  disabledVehicle,
   autocompleteFromPlaceholder,
   autocompleteToPlaceholder,
+  autocompleteVehiclePlaceholder,
   renderAutocompleteFrom,
   renderAutocompleteTo,
+  renderAutocompleteVehicle,
   renderDatePickerComponent = props => <DatePicker {...props} />,
   datepickerProps,
   stepperProps,
@@ -136,6 +149,7 @@ export const SearchForm = ({
   submitButtonText,
   display = SearchFormDisplay.AUTO,
   showDateField = true,
+  showVehicleField = true,
   submitButtonRef = null,
   showInvertButton = true,
   addon,
@@ -303,6 +317,22 @@ export const SearchForm = ({
     },
   }
 
+  const autocompleteVehicleConfig = {
+    name: 'vehicle',
+    placeholder: autocompleteVehiclePlaceholder,
+    renderAutocompleteComponent: renderAutocompleteVehicle,
+    onSelect: (value: AutocompleteOnChange) => {
+      setFormValues(
+        (currentFormValues: SearchFormValues): SearchFormValues => ({
+          ...currentFormValues,
+          [SearchFormElements.AUTOCOMPLETE_VEHICLE]: value,
+        }),
+      )
+
+      closeElement(SearchFormElements.AUTOCOMPLETE_VEHICLE)
+    },
+  }
+
   const transitionSectionConfig = {
     classNames: TRANSITION_SECTION_CLASS_NAME,
     timeout: transitionSectionTimeout,
@@ -325,6 +355,7 @@ export const SearchForm = ({
 
   const autocompleteFromValue = formValues[SearchFormElements.AUTOCOMPLETE_FROM]
   const autocompleteToValue = formValues[SearchFormElements.AUTOCOMPLETE_TO]
+  const autocompleteVehicleValue = formValues[SearchFormElements.AUTOCOMPLETE_VEHICLE]
 
   const doShowInvertButton =
     showInvertButton &&
@@ -345,6 +376,7 @@ export const SearchForm = ({
       $isSmallDisplay={isSmallDisplay}
       $isLargeDisplay={isLargeDisplay}
       $showDateField={showDateField}
+      $showVehicleField={showVehicleField}
       $showAddon={Boolean(addon)}
     >
       <div className="kirk-searchForm-from-container">
@@ -474,7 +506,7 @@ export const SearchForm = ({
           document.body,
         )}
 
-      <div className="kirk-searchForm-dateSeat-container">
+      <div className="kirk-searchForm-datepicker-container">
         {(isLargeDisplay || showDateField) && (
           <Fragment>
             <div className="kirk-searchForm-date">
@@ -513,10 +545,13 @@ export const SearchForm = ({
                 document.body,
               )}
 
-            <VerticalDivider />
+            {/* <VerticalDivider /> */}
+            <ResponsiveDivider $isSmallDisplay={isSmallDisplay} $isLargeDisplay={isLargeDisplay} />
           </Fragment>
         )}
+      </div>
 
+      <div className="kirk-searchForm-seatPrice-container">
         <div className="kirk-searchForm-seats">
           <button
             type="button"
@@ -570,7 +605,7 @@ export const SearchForm = ({
             className="kirk-search-button"
             onClick={() => setElementOpened(SearchFormElements.PRICE)}
           >
-            <StandardSeat />
+            <CoinIcon />
             <TextTitle className="kirk-search-ellipsis">{getPriceFormattedValue()}</TextTitle>
           </button>
         </div>
@@ -609,6 +644,64 @@ export const SearchForm = ({
             document.body,
           )}
       </div>
+
+      {(showVehicleField) && (
+
+        <Fragment>
+          <div className="kirk-searchForm-vehicle">
+            <ResponsiveDivider $isSmallDisplay={isSmallDisplay} $isLargeDisplay={isLargeDisplay} />
+
+            <SlideSwitchTransition
+              side={isSmallMediaSize ? SlideSwitchTransitionSide.BOTTOM : SlideSwitchTransitionSide.RIGHT}
+              childrenKey={animationKey.current}
+            >
+              <button
+                type="button"
+                className="kirk-search-button"
+                onClick={() => setElementOpened(SearchFormElements.AUTOCOMPLETE_VEHICLE)}
+                disabled={disabledVehicle}
+              >
+                <CarIcon />
+                <TextTitle
+                  className={cc([
+                    'kirk-search-ellipsis',
+                    { 'kirk-search-placeholder': !autocompleteVehicleValue && !initialVehicle },
+                  ])}
+                >
+                  {getPlaceholderText(
+                    initialVehicle,
+                    autocompleteVehicleValue?.item.label,
+                    autocompleteVehiclePlaceholder,
+                  )}
+                </TextTitle>
+              </button>
+            </SlideSwitchTransition>
+          </div>
+        </Fragment>
+      )}
+
+      <Overlay
+        shouldDisplay={isLargeMediaSize && elementOpened === SearchFormElements.AUTOCOMPLETE_VEHICLE}
+        closeOnBlur={() => closeElement(SearchFormElements.AUTOCOMPLETE_VEHICLE)}
+        className="kirk-searchForm-overlay kirk-searchForm-autocomplete-vehicle"
+      >
+        <AutoCompleteOverlay {...autocompleteVehicleConfig} />
+      </Overlay>
+
+      {isSmallMediaSize &&
+        canUseDOM &&
+        createPortal(
+          <CSSTransition
+            in={elementOpened === SearchFormElements.AUTOCOMPLETE_VEHICLE}
+            {...transitionSectionConfig}
+          >
+            <AutoCompleteSection
+              {...autocompleteVehicleConfig}
+              onClose={() => closeElement(SearchFormElements.AUTOCOMPLETE_VEHICLE)}
+            />
+          </CSSTransition>,
+          document.body,
+        )}
 
       {isSmallDisplay && addon && (
         <Fragment>
