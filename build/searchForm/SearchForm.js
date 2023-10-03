@@ -48,6 +48,7 @@ var mediaSizeProvider_1 = require("../_utils/mediaSizeProvider");
 var bullet_1 = require("../bullet");
 var datePicker_1 = require("../datePicker");
 var calendarIcon_1 = require("../icon/calendarIcon");
+var carIcon_1 = require("../icon/carIcon");
 var coinIcon_1 = require("../icon/coinIcon");
 var doubleArrowIcon_1 = require("../icon/doubleArrowIcon");
 var searchIcon_1 = require("../icon/searchIcon");
@@ -79,6 +80,7 @@ var SearchFormElements;
     SearchFormElements["PRICE"] = "PRICE";
     SearchFormElements["AUTOCOMPLETE_FROM"] = "AUTOCOMPLETE_FROM";
     SearchFormElements["AUTOCOMPLETE_TO"] = "AUTOCOMPLETE_TO";
+    SearchFormElements["AUTOCOMPLETE_VEHICLE"] = "AUTOCOMPLETE_VEHICLE";
 })(SearchFormElements || (exports.SearchFormElements = SearchFormElements = {}));
 var getPlaceholderText = function (initial, autocompleted, placeholder) {
     if (autocompleted) {
@@ -91,21 +93,21 @@ var getPlaceholderText = function (initial, autocompleted, placeholder) {
 };
 var SearchForm = function (_a) {
     var _b;
-    var className = _a.className, onSubmit = _a.onSubmit, _c = _a.onChange, onChange = _c === void 0 ? function () { } : _c, initialFrom = _a.initialFrom, initialTo = _a.initialTo, disabledFrom = _a.disabledFrom, disabledTo = _a.disabledTo, autocompleteFromPlaceholder = _a.autocompleteFromPlaceholder, autocompleteToPlaceholder = _a.autocompleteToPlaceholder, renderAutocompleteFrom = _a.renderAutocompleteFrom, renderAutocompleteTo = _a.renderAutocompleteTo, _d = _a.renderDatePickerComponent, renderDatePickerComponent = _d === void 0 ? function (props) { return react_1.default.createElement(datePicker_1.DatePicker, __assign({}, props)); } : _d, datepickerProps = _a.datepickerProps, stepperProps = _a.stepperProps, priceProps = _a.priceProps, submitButtonText = _a.submitButtonText, _e = _a.display, display = _e === void 0 ? SearchFormDisplay.AUTO : _e, _f = _a.showDateField, showDateField = _f === void 0 ? true : _f, _g = _a.submitButtonRef, submitButtonRef = _g === void 0 ? null : _g, _h = _a.showInvertButton, showInvertButton = _h === void 0 ? true : _h, addon = _a.addon;
+    var className = _a.className, onSubmit = _a.onSubmit, _c = _a.onChange, onChange = _c === void 0 ? function () { } : _c, initialFrom = _a.initialFrom, initialTo = _a.initialTo, initialVehicle = _a.initialVehicle, disabledFrom = _a.disabledFrom, disabledTo = _a.disabledTo, disabledVehicle = _a.disabledVehicle, autocompleteFromPlaceholder = _a.autocompleteFromPlaceholder, autocompleteToPlaceholder = _a.autocompleteToPlaceholder, autocompleteVehiclePlaceholder = _a.autocompleteVehiclePlaceholder, renderAutocompleteFrom = _a.renderAutocompleteFrom, renderAutocompleteTo = _a.renderAutocompleteTo, renderAutocompleteVehicle = _a.renderAutocompleteVehicle, _d = _a.renderDatePickerComponent, renderDatePickerComponent = _d === void 0 ? function (props) { return react_1.default.createElement(datePicker_1.DatePicker, __assign({}, props)); } : _d, datepickerProps = _a.datepickerProps, stepperProps = _a.stepperProps, priceProps = _a.priceProps, submitButtonText = _a.submitButtonText, _e = _a.display, display = _e === void 0 ? SearchFormDisplay.AUTO : _e, _f = _a.showDateField, showDateField = _f === void 0 ? true : _f, _g = _a.showVehicleField, showVehicleField = _g === void 0 ? true : _g, _h = _a.submitButtonRef, submitButtonRef = _h === void 0 ? null : _h, _j = _a.showInvertButton, showInvertButton = _j === void 0 ? true : _j, addon = _a.addon;
     var isLargeMediaSize = (0, mediaSizeProvider_1.useIsLargeMediaSize)();
     var isSmallMediaSize = !isLargeMediaSize;
     // We allow the component display to be overriden by a prop
     var isLargeDisplay = display === SearchFormDisplay.LARGE || (display === SearchFormDisplay.AUTO && isLargeMediaSize);
     var isSmallDisplay = display === SearchFormDisplay.SMALL || (display === SearchFormDisplay.AUTO && isSmallMediaSize);
-    var _j = (0, react_1.useState)(null), elementOpened = _j[0], setElementOpened = _j[1];
+    var _k = (0, react_1.useState)(null), elementOpened = _k[0], setElementOpened = _k[1];
     // Used as "trigger" each time the value is changed for the invert animation.
     // Only the change resulting from the invert button should be animated.
     var animationKey = react_1.default.useRef(0);
-    var _k = (0, react_1.useState)((_b = {},
+    var _l = (0, react_1.useState)((_b = {},
         _b[SearchFormElements.STEPPER] = stepperProps.defaultValue,
         _b[SearchFormElements.PRICE] = priceProps.defaultValue,
         _b[SearchFormElements.DATEPICKER] = datepickerProps.defaultValue,
-        _b)), formValues = _k[0], setFormValues = _k[1];
+        _b)), formValues = _l[0], setFormValues = _l[1];
     (0, react_1.useEffect)(function () {
         onChange(formValues);
     }, [onChange, formValues]);
@@ -226,6 +228,18 @@ var SearchForm = function (_a) {
             }
         },
     };
+    var autocompleteVehicleConfig = {
+        name: 'vehicle',
+        placeholder: autocompleteVehiclePlaceholder,
+        renderAutocompleteComponent: renderAutocompleteVehicle,
+        onSelect: function (value) {
+            setFormValues(function (currentFormValues) {
+                var _a;
+                return (__assign(__assign({}, currentFormValues), (_a = {}, _a[SearchFormElements.AUTOCOMPLETE_VEHICLE] = value, _a)));
+            });
+            closeElement(SearchFormElements.AUTOCOMPLETE_VEHICLE);
+        },
+    };
     var transitionSectionConfig = {
         classNames: transitionConfig_1.TRANSITION_SECTION_CLASS_NAME,
         timeout: transitionConfig_1.transitionSectionTimeout,
@@ -242,13 +256,14 @@ var SearchForm = function (_a) {
     };
     var autocompleteFromValue = formValues[SearchFormElements.AUTOCOMPLETE_FROM];
     var autocompleteToValue = formValues[SearchFormElements.AUTOCOMPLETE_TO];
+    var autocompleteVehicleValue = formValues[SearchFormElements.AUTOCOMPLETE_VEHICLE];
     var doShowInvertButton = showInvertButton &&
         (formValues[SearchFormElements.AUTOCOMPLETE_FROM] != null ||
             formValues[SearchFormElements.AUTOCOMPLETE_TO] != null);
     return (react_1.default.createElement(SearchForm_style_1.StyledSearchForm, { action: "", noValidate: true, className: (0, classcat_1.default)(['kirk-searchForm', className]), role: "search", method: "post", onSubmit: function (evt) {
             evt.preventDefault();
             onSubmit(formValues);
-        }, "$isSmallDisplay": isSmallDisplay, "$isLargeDisplay": isLargeDisplay, "$showDateField": showDateField, "$showAddon": Boolean(addon) },
+        }, "$isSmallDisplay": isSmallDisplay, "$isLargeDisplay": isLargeDisplay, "$showDateField": showDateField, "$showVehicleField": showVehicleField, "$showAddon": Boolean(addon) },
         react_1.default.createElement("div", { className: "kirk-searchForm-from-container" },
             react_1.default.createElement("div", { className: "kirk-searchForm-from" },
                 react_1.default.createElement(SlideSwitchTransition_1.SlideSwitchTransition, { side: isSmallMediaSize ? SlideSwitchTransition_1.SlideSwitchTransitionSide.BOTTOM : SlideSwitchTransition_1.SlideSwitchTransitionSide.RIGHT, childrenKey: animationKey.current },
@@ -287,19 +302,19 @@ var SearchForm = function (_a) {
             exenv_1.canUseDOM &&
             (0, react_dom_1.createPortal)(react_1.default.createElement(react_transition_group_1.CSSTransition, __assign({ in: elementOpened === SearchFormElements.AUTOCOMPLETE_TO }, transitionSectionConfig),
                 react_1.default.createElement(section_1.AutoCompleteSection, __assign({}, autocompleteToConfig, { onClose: function () { return closeElement(SearchFormElements.AUTOCOMPLETE_TO); } }))), document.body),
-        react_1.default.createElement("div", { className: "kirk-searchForm-dateSeat-container" },
-            (isLargeDisplay || showDateField) && (react_1.default.createElement(react_1.Fragment, null,
-                react_1.default.createElement("div", { className: "kirk-searchForm-date" },
-                    react_1.default.createElement("button", { type: "button", className: "kirk-search-button", onClick: function () { return setElementOpened(SearchFormElements.DATEPICKER); } },
-                        react_1.default.createElement(calendarIcon_1.CalendarIcon, null),
-                        react_1.default.createElement(title_1.TextTitle, { className: "kirk-search-ellipsis" }, getDatepickerFormattedValue()))),
-                react_1.default.createElement(overlay_3.Overlay, { shouldDisplay: isLargeMediaSize && elementOpened === SearchFormElements.DATEPICKER, closeOnBlur: function () { return closeElement(SearchFormElements.DATEPICKER); }, className: "kirk-searchForm-overlay kirk-searchForm-datepicker" },
-                    react_1.default.createElement(overlay_2.DatePickerOverlay, __assign({}, datepickerConfig))),
-                isSmallMediaSize &&
-                    exenv_1.canUseDOM &&
-                    (0, react_dom_1.createPortal)(react_1.default.createElement(react_transition_group_1.CSSTransition, __assign({ in: elementOpened === SearchFormElements.DATEPICKER }, transitionSectionConfig),
-                        react_1.default.createElement(section_2.DatePickerSection, __assign({}, datepickerConfig, { onClose: function () { return closeElement(SearchFormElements.DATEPICKER); } }))), document.body),
-                react_1.default.createElement(SearchFormDivider_1.VerticalDivider, null))),
+        react_1.default.createElement("div", { className: "kirk-searchForm-datepicker-container" }, (isLargeDisplay || showDateField) && (react_1.default.createElement(react_1.Fragment, null,
+            react_1.default.createElement("div", { className: "kirk-searchForm-date" },
+                react_1.default.createElement("button", { type: "button", className: "kirk-search-button", onClick: function () { return setElementOpened(SearchFormElements.DATEPICKER); } },
+                    react_1.default.createElement(calendarIcon_1.CalendarIcon, null),
+                    react_1.default.createElement(title_1.TextTitle, { className: "kirk-search-ellipsis" }, getDatepickerFormattedValue()))),
+            react_1.default.createElement(overlay_3.Overlay, { shouldDisplay: isLargeMediaSize && elementOpened === SearchFormElements.DATEPICKER, closeOnBlur: function () { return closeElement(SearchFormElements.DATEPICKER); }, className: "kirk-searchForm-overlay kirk-searchForm-datepicker" },
+                react_1.default.createElement(overlay_2.DatePickerOverlay, __assign({}, datepickerConfig))),
+            isSmallMediaSize &&
+                exenv_1.canUseDOM &&
+                (0, react_dom_1.createPortal)(react_1.default.createElement(react_transition_group_1.CSSTransition, __assign({ in: elementOpened === SearchFormElements.DATEPICKER }, transitionSectionConfig),
+                    react_1.default.createElement(section_2.DatePickerSection, __assign({}, datepickerConfig, { onClose: function () { return closeElement(SearchFormElements.DATEPICKER); } }))), document.body),
+            react_1.default.createElement(SearchFormDivider_1.ResponsiveDivider, { "$isSmallDisplay": isSmallDisplay, "$isLargeDisplay": isLargeDisplay })))),
+        react_1.default.createElement("div", { className: "kirk-searchForm-seatPrice-container" },
             react_1.default.createElement("div", { className: "kirk-searchForm-seats" },
                 react_1.default.createElement("button", { type: "button", className: "kirk-search-button", onClick: function () { return setElementOpened(SearchFormElements.STEPPER); } },
                     react_1.default.createElement(standardSeat_1.StandardSeatIcon, null),
@@ -333,6 +348,22 @@ var SearchForm = function (_a) {
                 exenv_1.canUseDOM &&
                 (0, react_dom_1.createPortal)(react_1.default.createElement(react_transition_group_1.CSSTransition, __assign({ in: elementOpened === SearchFormElements.PRICE }, transitionSectionConfig),
                     react_1.default.createElement(section_3.PriceSection, __assign({}, priceConfig, { confirmLabel: priceProps.confirmLabel, onClose: function () { return closeElement(SearchFormElements.PRICE); } }))), document.body)),
+        (showVehicleField) && (react_1.default.createElement(react_1.Fragment, null,
+            react_1.default.createElement("div", { className: "kirk-searchForm-vehicle" },
+                react_1.default.createElement(SearchFormDivider_1.ResponsiveDivider, { "$isSmallDisplay": isSmallDisplay, "$isLargeDisplay": isLargeDisplay }),
+                react_1.default.createElement(SlideSwitchTransition_1.SlideSwitchTransition, { side: isSmallMediaSize ? SlideSwitchTransition_1.SlideSwitchTransitionSide.BOTTOM : SlideSwitchTransition_1.SlideSwitchTransitionSide.RIGHT, childrenKey: animationKey.current },
+                    react_1.default.createElement("button", { type: "button", className: "kirk-search-button", onClick: function () { return setElementOpened(SearchFormElements.AUTOCOMPLETE_VEHICLE); }, disabled: disabledVehicle },
+                        react_1.default.createElement(carIcon_1.CarIcon, null),
+                        react_1.default.createElement(title_1.TextTitle, { className: (0, classcat_1.default)([
+                                'kirk-search-ellipsis',
+                                { 'kirk-search-placeholder': !autocompleteVehicleValue && !initialVehicle },
+                            ]) }, getPlaceholderText(initialVehicle, autocompleteVehicleValue === null || autocompleteVehicleValue === void 0 ? void 0 : autocompleteVehicleValue.item.label, autocompleteVehiclePlaceholder))))))),
+        react_1.default.createElement(overlay_3.Overlay, { shouldDisplay: isLargeMediaSize && elementOpened === SearchFormElements.AUTOCOMPLETE_VEHICLE, closeOnBlur: function () { return closeElement(SearchFormElements.AUTOCOMPLETE_VEHICLE); }, className: "kirk-searchForm-overlay kirk-searchForm-autocomplete-vehicle" },
+            react_1.default.createElement(overlay_1.AutoCompleteOverlay, __assign({}, autocompleteVehicleConfig))),
+        isSmallMediaSize &&
+            exenv_1.canUseDOM &&
+            (0, react_dom_1.createPortal)(react_1.default.createElement(react_transition_group_1.CSSTransition, __assign({ in: elementOpened === SearchFormElements.AUTOCOMPLETE_VEHICLE }, transitionSectionConfig),
+                react_1.default.createElement(section_1.AutoCompleteSection, __assign({}, autocompleteVehicleConfig, { onClose: function () { return closeElement(SearchFormElements.AUTOCOMPLETE_VEHICLE); } }))), document.body),
         isSmallDisplay && addon && (react_1.default.createElement(react_1.Fragment, null,
             react_1.default.createElement(SearchFormDivider_1.ResponsiveDivider, { "$isSmallDisplay": isSmallDisplay, "$isLargeDisplay": isLargeDisplay }),
             react_1.default.createElement("div", { className: "kirk-searchForm-addon" }, addon))),

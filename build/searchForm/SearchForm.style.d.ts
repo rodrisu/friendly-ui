@@ -3,5 +3,6 @@ export declare const StyledSearchForm: import("styled-components").StyledCompone
     $isSmallDisplay: boolean;
     $isLargeDisplay: boolean;
     $showDateField: boolean;
+    $showVehicleField: boolean;
     $showAddon: boolean;
 }, never>;

@@ -13,12 +13,16 @@ export type SearchFormProps = Readonly<{
     onChange?: (formValues: SearchFormValues) => void;
     disabledFrom?: boolean;
     disabledTo?: boolean;
+    disabledVehicle?: boolean;
     initialFrom?: string;
     initialTo?: string;
+    initialVehicle?: string;
     autocompleteFromPlaceholder: AutoCompleteProps['placeholder'];
     autocompleteToPlaceholder: AutoCompleteProps['placeholder'];
+    autocompleteVehiclePlaceholder: AutoCompleteProps['placeholder'];
     renderAutocompleteFrom: AutoCompleteOverlayProps['renderAutocompleteComponent'];
     renderAutocompleteTo: AutoCompleteOverlayProps['renderAutocompleteComponent'];
+    renderAutocompleteVehicle?: AutoCompleteOverlayProps['renderAutocompleteComponent'];
     renderDatePickerComponent?: DatePickerOverlayProps['renderDatePickerComponent'];
     datepickerProps: SearchFormDatePickerProps;
     stepperProps: SearchFormStepperProps;
@@ -27,6 +31,7 @@ export type SearchFormProps = Readonly<{
     submitButtonRef?: React.RefObject<HTMLButtonElement> | null;
     display?: SearchFormDisplay;
     showDateField?: boolean;
+    showVehicleField?: boolean;
     showInvertButton?: boolean;
     addon?: JSX.Element;
 }>;
@@ -59,7 +64,8 @@ export declare enum SearchFormElements {
     STEPPER = "STEPPER",
     PRICE = "PRICE",
     AUTOCOMPLETE_FROM = "AUTOCOMPLETE_FROM",
-    AUTOCOMPLETE_TO = "AUTOCOMPLETE_TO"
+    AUTOCOMPLETE_TO = "AUTOCOMPLETE_TO",
+    AUTOCOMPLETE_VEHICLE = "AUTOCOMPLETE_VEHICLE"
 }
 export type SearchFormValues = {
     DATEPICKER: string;
@@ -67,5 +73,6 @@ export type SearchFormValues = {
     PRICE: number;
     AUTOCOMPLETE_FROM?: AutocompleteOnChange;
     AUTOCOMPLETE_TO?: AutocompleteOnChange;
+    AUTOCOMPLETE_VEHICLE?: AutocompleteOnChange;
 };
-export declare const SearchForm: ({ className, onSubmit, onChange, initialFrom, initialTo, disabledFrom, disabledTo, autocompleteFromPlaceholder, autocompleteToPlaceholder, renderAutocompleteFrom, renderAutocompleteTo, renderDatePickerComponent, datepickerProps, stepperProps, priceProps, submitButtonText, display, showDateField, submitButtonRef, showInvertButton, addon, }: SearchFormProps) => React.JSX.Element;
+export declare const SearchForm: ({ className, onSubmit, onChange, initialFrom, initialTo, initialVehicle, disabledFrom, disabledTo, disabledVehicle, autocompleteFromPlaceholder, autocompleteToPlaceholder, autocompleteVehiclePlaceholder, renderAutocompleteFrom, renderAutocompleteTo, renderAutocompleteVehicle, renderDatePickerComponent, datepickerProps, stepperProps, priceProps, submitButtonText, display, showDateField, showVehicleField, submitButtonRef, showInvertButton, addon, }: SearchFormProps) => React.JSX.Element;
