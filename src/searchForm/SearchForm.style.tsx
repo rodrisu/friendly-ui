@@ -1,20 +1,22 @@
 import styled from 'styled-components'
 
 import { color, componentSizes, font, radius, shadow, space } from '../_utils/branding'
-
-const formWidth = '928px'
+//aumentar tamano de form
+// aumentar tamano de los botones en from y to
+//mejorar posicionamiento de los overlay
+const formWidth = '1072px'
 const formHeight = '56px'
 const primaryFieldsWidth = '240px'
 const secondaryFieldsWidth = '160px'
 export const buttonHeight = '40px'
 const submitButtonWidth = '88px'
 const positionAutocompleteFrom = '-8px'
-const positionAutocompleteTo = '268px'
-const positionDateStepper = '473px'
-const positionStepper = '135px'
-const positionPrice = '55px'
+const positionAutocompleteTo = '240px'
+const positionDateStepper = '504px'
+const positionStepper = '664px'
+const positionPrice = '824px'
 const positionAutocompleteVehicle = '268px'
-const positionIconWidth = '-35px'
+const positionIconWidth = '35px'
 
 export const StyledSearchForm = styled.form<{
   $isSmallDisplay: boolean
@@ -36,7 +38,8 @@ export const StyledSearchForm = styled.form<{
   position: relative;
 
   .kirk-searchForm-from-container,
-  .kirk-searchForm-seatPrice-container {
+  .kirk-searchForm-seatPrice-container,
+  .kirk-searchForm-datepicker-container {
     display: flex;
   }
 
@@ -80,7 +83,7 @@ export const StyledSearchForm = styled.form<{
     height: ${buttonHeight};
     box-sizing: border-box;
     line-height: ${font.l.lineHeight};
-    width: 100%;
+    width: 240px;
     min-width: 0;
     text-align: left;
     white-space: nowrap;
@@ -116,7 +119,8 @@ export const StyledSearchForm = styled.form<{
   }
 
   .kirk-searchForm-date .kirk-search-button,
-  .kirk-searchForm-seats .kirk-search-button {
+  .kirk-searchForm-stepper .kirk-search-button,
+  .kirk-searchForm-price .kirk-search-button {
     width: ${secondaryFieldsWidth};
     padding-left: ${space.m};
   }
@@ -125,7 +129,7 @@ export const StyledSearchForm = styled.form<{
     width: ${submitButtonWidth};
     height: ${formHeight};
     border-radius: 0 ${radius.l} ${radius.l} 0;
-    background-color: ${color.green};
+    background-color: ${color.blue};
     padding: 0;
     justify-content: center;
   }
@@ -144,38 +148,38 @@ export const StyledSearchForm = styled.form<{
   }
 
   .kirk-searchForm-autocomplete-from {
-    top: ${props => (props.$isLargeDisplay ? `-${space.m}` : 0)};
-    left: ${primaryFieldsWidth};
+    top: ${props => (props.$isLargeDisplay ? formHeight : 0)};
+    left: ${props => (props.$isLargeDisplay ? positionAutocompleteFrom : primaryFieldsWidth)};
   }
 
   .kirk-searchForm-autocomplete-to {
-    top: ${props => (props.$isLargeDisplay ? `-${space.m}` : `calc(${formHeight} + ${space.m})`)};
+    top: ${props => (props.$isLargeDisplay ? formHeight : `calc(${formHeight} + ${space.m})`)};
     left: ${props => (props.$isLargeDisplay ? positionAutocompleteTo : primaryFieldsWidth)};
   }
 
   .kirk-searchForm-datepicker {
     top: ${props =>
-      props.$isLargeDisplay ? `-${space.m}` : `calc(${formHeight} + ${formHeight} + ${space.m})`};
+      props.$isLargeDisplay ? formHeight : `calc(${formHeight} + ${formHeight} + ${space.m})`};
     left: ${props => (props.$isLargeDisplay ? positionDateStepper : primaryFieldsWidth)};
   }
 
   .kirk-searchForm-autocomplete-vehicle {
-    top: ${props => (props.$isLargeDisplay ? `-${space.m}` : `calc(${formHeight} + ${formHeight} + ${formHeight} + ${formHeight} + ${space.m})`)};
+    top: ${props => (props.$isLargeDisplay ? formHeight : `calc(${formHeight} + ${formHeight} + ${formHeight} + ${formHeight} + ${space.m})`)};
     left: ${props => (props.$isLargeDisplay ? positionAutocompleteVehicle : primaryFieldsWidth)};
   }
 
-  .kirk-stepperOverlay {
+  .kirk-searchForm-stepper {
     top: ${props =>
       props.$isLargeDisplay
-        ? `-${space.m}`
+        ? formHeight
         : `calc(${formHeight} + ${formHeight} + ${formHeight} + ${space.m} + ${space.m})`};
-    left: ${props => (props.$isLargeDisplay ? positionStepper : `calc(${primaryFieldsWidth} + ${positionIconWidth})`)};
+    left: ${props => (props.$isLargeDisplay ? positionStepper : primaryFieldsWidth)};
   }
 
-  .kirk-priceOverlay {
+  .kirk-searchForm-price {
     top: ${props =>
       props.$isLargeDisplay
-        ? `-${space.m}`
+        ? formHeight
         : `calc(${formHeight} + ${formHeight} + ${formHeight} + ${space.m} + ${space.m})`};
     left: ${props => (props.$isLargeDisplay ? positionPrice : `calc(${primaryFieldsWidth} + ${positionIconWidth})`)};
   }
@@ -208,7 +212,7 @@ export const StyledSearchForm = styled.form<{
     .kirk-searchForm-vehicle .kirk-search-button,
     .kirk-searchForm-invert .kirk-search-button,
     .kirk-searchForm-date .kirk-search-button,
-    .kirk-searchForm-seats .kirk-search-button {
+    .kirk-searchForm-stepper .kirk-search-button {
       padding: 0;
       width: 100%;
       height: ${buttonHeight};
@@ -221,7 +225,7 @@ export const StyledSearchForm = styled.form<{
       margin-right: 0;
     }
 
-    .kirk-searchForm-seats {
+    .kirk-searchForm-stepper {
       padding-left: ${props.$showDateField ? space.base : 0};
     }
 
@@ -235,7 +239,7 @@ export const StyledSearchForm = styled.form<{
     }
 
     .kirk-searchForm-date,
-    .kirk-searchForm-seats {
+    .kirk-searchForm-stepper {
       flex: 1;
       min-width: 0;
     }

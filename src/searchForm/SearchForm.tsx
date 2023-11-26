@@ -552,7 +552,7 @@ export const SearchForm = ({
       </div>
 
       <div className="kirk-searchForm-seatPrice-container">
-        <div className="kirk-searchForm-seats">
+        <div className="kirk-searchForm-stepper">
           <button
             type="button"
             className="kirk-search-button"

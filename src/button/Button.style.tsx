@@ -12,7 +12,7 @@ export const StyledButton = styled(Button)`
     display: inline-flex;
     padding: 0 ${space.xl};
     border: 1px solid transparent;
-    border-radius: 48px;
+    border-radius: 11px;
     font-size: ${font.base.size};
     line-height: 1;
     text-align: center;
@@ -108,9 +108,9 @@ export const StyledButton = styled(Button)`
   }
 
   &.kirk-button-secondary {
-    background-color: ${color.white};
-    border-color: ${color.gray};
-    color: ${color.blue};
+    background-color: ${color.lightGray};
+    border-color: ${color.lightGray};
+    color: ${color.midnightGreen};
   }
   &.kirk-button-secondary.kirk-button-shadowed {
     border: none;
@@ -119,7 +119,7 @@ export const StyledButton = styled(Button)`
   &.kirk-button-secondary:hover,
   &.kirk-button-secondary:focus,
   &.kirk-button-secondary:active {
-    background-color: ${color.gray};
+    background-color: ${color.darkGray};
   }
 
   &.kirk-button-tertiary {
@@ -193,7 +193,7 @@ export const StyledButton = styled(Button)`
 
   @media (hover: none), (hover: on-demand) {
     &.kirk-button-secondary:hover {
-      background-color: ${color.white};
+      background-color: ${color.lightGray};
     }
   }
 `
